@@ -20,3 +20,7 @@ Route::get('/', function () {
 //routes resource para schedule e user
 Route::resource('schedule', App\Http\Controllers\ScheduleController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
