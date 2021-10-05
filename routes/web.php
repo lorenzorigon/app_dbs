@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('schedule', App\Http\Controllers\ScheduleController::class);
+Route::resource('user', App\Http\Controllers\UserController::class);
