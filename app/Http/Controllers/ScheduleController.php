@@ -14,7 +14,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $schedule = Schedule::all();
+        return $schedule;
     }
 
     /**
@@ -24,7 +25,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        // return view de criação
     }
 
     /**
@@ -35,7 +36,8 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $schedule = Schedule::create($request->all());
+        return $schedule;
     }
 
     /**
@@ -44,9 +46,10 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Schedule $schedule)
+    public function show($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        return $schedule;
     }
 
     /**
@@ -57,7 +60,7 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        //
+        //return view de edição
     }
 
     /**
@@ -67,9 +70,12 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(Request $request, $id)
     {
-        //
+        $schedule = Schedule::find($id);
+        $schedule->fill($request->all());
+        $schedule->save();
+        return $schedule;
     }
 
     /**
@@ -78,8 +84,10 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedule $schedule)
+    public function destroy($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        $schedule->delete();
+        return 'Agendamento deletado com sucesso!';
     }
 }
