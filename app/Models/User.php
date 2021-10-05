@@ -24,6 +24,10 @@ class User extends Authenticatable
         'phone',
     ];
 
+    public function schedules(){
+        return $this->hasMany('App\Models\Schedule');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

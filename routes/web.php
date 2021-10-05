@@ -17,5 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//routes resource para schedule e user
 Route::resource('schedule', App\Http\Controllers\ScheduleController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
