@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">Bem vindo {{auth()->user()->name}}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,18 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="container mt-4 mb-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-success" type="submit">
+                                    <a href="schedule/create">Agendar Horário</a>  
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-primary">Meus agendamentos</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
