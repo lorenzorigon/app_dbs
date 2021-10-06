@@ -23,3 +23,9 @@ Route::resource('schedule', App\Http\Controllers\ScheduleController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//admin
+
+Route::get('/admin', function(){
+    return view('admin.schedules');
+});
