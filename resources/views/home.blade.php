@@ -17,14 +17,18 @@
                     <div class="container mt-4 mb-4">
                         <div class="row">
                             <div class="col-6">
-                                <a href="schedule/create" style="">
+                                <a href="schedule/create">
                                     <button class="btn btn-success" type="submit">
                                         Agendar Horário
                                     </button>
                                 </a>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-primary">Meus agendamentos</button>
+                                <a href="schedule">
+                                    <button class="btn btn-primary" type="submit">
+                                        Meus agendamentos
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -16,6 +16,11 @@
 
                     <div class="container">
                         <div class="row text-center">
+                            
+                            <div class="col-12 mb-3">
+                                <input type="date" class="form-control" id="date">
+                              </div>
+
                             <div class="col-6">
                                 <button class="btn btn-primary btn-lg mb-1">13:00</button>
                             </div>
