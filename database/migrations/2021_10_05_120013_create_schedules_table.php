@@ -20,6 +20,7 @@ class CreateSchedulesTable extends Migration
             $table->float('hour');
             $table->boolean('confirm');
             $table->unsignedBigInteger('user_id');
+            $table->string('service');
 
             $table->foreign('user_id')->references('id')->on('users');
         });

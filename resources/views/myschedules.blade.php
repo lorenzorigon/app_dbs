@@ -13,13 +13,30 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
-                    <div class="container">
-                        <div class="row">
-                            Oi
-                        </div>
+
+                    <div class="table-responsive">
+                        <table class="table text-center">
+                            <thead>
+                              <tr>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Horário</th>
+                                <th scope="col">Confirmado</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>10/10</td>
+                                <td>14:00</td>
+                                <td style="color: green; font-weight:bold"> V </td>
+                              </tr>
+                              <tr>
+                                <td>20/10</td>
+                                <td>17:30</td>
+                                <td style="color: red; font-weight:bold"> X</td>
+                              </tr>
+                            </tbody>
+                          </table>
                     </div>
-                    
                 </div>
             </div>
         </div>

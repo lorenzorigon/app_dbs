@@ -9,7 +9,7 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['day', 'hour', 'confirm', 'user_id'];
+    protected $fillable = ['day', 'hour', 'confirm', 'user_id', 'service'];
 
     public function user(){
         return $this->belongsTo('App\Models\User');
