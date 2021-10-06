@@ -21,6 +21,7 @@
                                 <th scope="col">Dia</th>
                                 <th scope="col">Horário</th>
                                 <th scope="col">Confirmado</th>
+                                <th scope="col"></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -28,11 +29,21 @@
                                 <td>10/10</td>
                                 <td>14:00</td>
                                 <td style="color: green; font-weight:bold"> V </td>
+                                <td>
+                                  <form action="">
+                                    <a href="#">X</a>
+                                  </form>
+                                </td>
                               </tr>
                               <tr>
                                 <td>20/10</td>
                                 <td>17:30</td>
-                                <td style="color: red; font-weight:bold"> X</td>
+                                <td style="color: red; font-weight:bold"> -</td>
+                                <td>
+                                  <form action="">
+                                    <a href="#">X</a>
+                                  </form>
+                                </td>
                               </tr>
                             </tbody>
                           </table>

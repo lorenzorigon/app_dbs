@@ -57,6 +57,7 @@
                                 <p><b>Combo 2 Degradê + 4 Barbas:</b> 110,00</p>
                             </div>
                         </div>
+                        <img class="img-precos" src="img/logo.svg" alt="" style="width: 80px">
                     </div>
                 </div>
             </div>

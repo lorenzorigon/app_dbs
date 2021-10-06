@@ -68,6 +68,9 @@
                 </div>
             </div>
         </div>
+        <div class="mt-4">
+            <img src="img/logo.svg" style="width: 160px">
+        </div>
     </div>
 </div>
 @endsection
