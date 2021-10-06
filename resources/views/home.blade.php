@@ -32,6 +32,32 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <p><b>Barba:</b> 20,00</p>
+                            </div>
+                            <div class="col-12">
+                                <p><b>Corte Social:</b> 20,00</p>
+                            </div>
+                            <div class="col-12">
+                                <p><b>Corte Degradê:</b> 30,00</p>
+                            </div>
+                            <div class="col-12">
+                                <p><b>Desenho c/ Navalha:</b> 10,00</p>
+                            </div>
+                            <div class="col-12">
+                                <p><b>Desenho c/ Pigmentação:</b> 5,00</p>
+                            </div>
+                            <div class="col-12">
+                                <p><b>Combo 2 social + 4 barbas:</b> 80,00</p>
+                            </div>
+                            <div class="col-12">
+                                <p><b>Combo 2 degradê + 4 barbas:</b> 110,00</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
