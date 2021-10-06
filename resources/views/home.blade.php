@@ -51,10 +51,10 @@
                                 <p><b>Desenho c/ Pigmentação:</b> 5,00</p>
                             </div>
                             <div class="col-12">
-                                <p><b>Combo 2 social + 4 barbas:</b> 80,00</p>
+                                <p><b>Combo 2 Social + 4 Barbas:</b> 80,00</p>
                             </div>
                             <div class="col-12">
-                                <p><b>Combo 2 degradê + 4 barbas:</b> 110,00</p>
+                                <p><b>Combo 2 Degradê + 4 Barbas:</b> 110,00</p>
                             </div>
                         </div>
                     </div>

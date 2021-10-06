@@ -80,7 +80,8 @@
         </main>
 
         <footer class="footer bg-dark">
-            <p>&copy;Lorenzo Cardoso</p>
+            <p>Av. Tancredo Neves 1100 <br>(55) 9 8437-5801</p>
+            
         </footer>
     </div>
 </body>
