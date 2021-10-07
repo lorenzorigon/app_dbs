@@ -13,7 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{route('schedule.store')}}" method="POST">
+                        <form action="{{ route('schedule.store') }}" method="POST">
                             @csrf
                             <div class="container">
                                 <div class="row text-center">
@@ -21,7 +21,8 @@
                                     <!-- Seleção de serviço -->
                                     <div class="row align-items-center mb-2 ml-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="service" value="corte" checked>
+                                            <input class="form-check-input" type="radio" name="service" value="corte"
+                                                checked>
                                             <label class="form-check-label mr-2" for="corte"> Corte </label>
                                         </div>
                                         <div class="form-check">
@@ -31,18 +32,21 @@
                                     </div>
 
                                     <!-- Campo de data -->
-                                    
+
                                     <div class="col-12 mb-2">
-                                        <input type="date" class="form-control" id="date" name="date" value="{{date('Y-m-d')}}">
+                                        <input type="date" class="form-control" id="day" name="day"
+                                            value="{{ date('Y-m-d') }}">
                                     </div>
-                    
+
                                     <!-- Botões de horário-->
                                     @for ($i = 13; $i < 20; $i++)
                                         <div class="col-6">
-                                            <button class="btn btn-primary btn-lg mb-1">{{ $i }}:00</button>
+                                            <input type="radio" name="hour" id="free" value="{{$i}}:00">
+                                            <label class="label" for="free">{{$i}}:00</label>
                                         </div>
                                         <div class="col-6">
-                                            <button class="btn btn-primary btn-lg mb-1">{{ $i }}:30</button>
+                                            <input type="radio" name="hour" id="free" value="{{$i}}:00">
+                                            <label class="label" for="free">{{$i}}:30</label>
                                         </div>
                                     @endfor
 
