@@ -5,13 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Agendar horário 
-                    <select class="form-select-lg ml-4" id="service" style="float: right">
-                        <option disabled selected>Serviço</option>
-                        <option value="1">Corte</option>
-                        <option value="2">Barba</option>
-                      </select>
-                </div>
+                <div class="card-header">Agendar horário</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -22,57 +16,39 @@
 
                     <div class="container">
                         <div class="row text-center">
+                            <form action="">
+                                <!-- Seleção de serviço -->
+                                <div class="row align-items-center mb-2 ml-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="service" id="corte">
+                                        <label class="form-check-label mr-2" for="corte"> Corte </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="service" id="barba" checked>
+                                        <label class="form-check-label" for="barba"> Barba </label>
+                                    </div>
+                                </div>
                             
-                            <div class="col-12 mb-3">
-                                <input type="date" class="form-control" id="date">
-                            </div>
+                                <!-- Campo de data -->
+                                <div class="col-12 mb-2">
+                                    <input type="date" class="form-control" id="date">
+                                </div>
 
-
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">13:00</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">13:30</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">14:00</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">14:30</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">15:00</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">15:30</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">16:00</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">16:30</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">17:00</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">17:30</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">18:00</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">18:30</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">19:00</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary btn-lg mb-1">19:30</button>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-success mt-2" style="width:100%;font-size:20px">Agendar</button>
-                            </div>
+                                <!-- Botões de horário-->
+                                @for ( $i = 13; $i < 20; $i++)
+                                    <div class="col-6">
+                                        <button class="btn btn-primary btn-lg mb-1">{{$i}}:00</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-primary btn-lg mb-1">{{$i}}:30</button>
+                                    </div>
+                                @endfor
+                        
+                                <!-- Botão para agendar horário -->
+                                <div class="col-12">
+                                    <button class="btn btn-success mt-1" style="width:100%;font-size:20px">Agendar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
