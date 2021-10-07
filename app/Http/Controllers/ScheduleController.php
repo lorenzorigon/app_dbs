@@ -36,6 +36,7 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $schedule = Schedule::create($request->all());
         return $schedule;
     }
