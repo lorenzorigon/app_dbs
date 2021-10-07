@@ -35,7 +35,7 @@
                                             </td>
                                             <td>
                                                 <form action="">
-                                                    <a href="#">X</a>
+                                                    <a href="#"><img src="/img/trash.svg" style="width: 20px"></a>
                                                 </form>
                                             </td>
                                         </tr>

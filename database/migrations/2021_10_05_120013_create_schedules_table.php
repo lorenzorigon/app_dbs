@@ -17,7 +17,7 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->dateTime('day');
-            $table->float('hour');
+            $table->string('hour');
             $table->boolean('confirm');
             $table->unsignedBigInteger('user_id');
             $table->string('service');
