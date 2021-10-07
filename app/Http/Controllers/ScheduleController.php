@@ -14,8 +14,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedule = Schedule::all();
-        return view('myschedules', ['schedules' => $schedule]);
+        $schedules = Schedule::where('user_id', auth()->user()->id)->get();
+        return view('myschedules', ['schedules' => $schedules]);
     }
 
     /**
