@@ -36,8 +36,9 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request['user_id'] = auth()->user()->id;
         $schedule = Schedule::create($request->all());
+
         return $schedule;
     }
 
@@ -89,6 +90,6 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::find($id);
         $schedule->delete();
-        return 'Agendamento deletado com sucesso!';
+        return redirect()->route('schedule.index');
     }
 }
