@@ -33,9 +33,9 @@
                                     <!-- Campo de data -->
                                     
                                     <div class="col-12 mb-2">
-                                        <input type="date" class="form-control" id="date" name="date" value="{{date('d/m/Y')}}">
+                                        <input type="date" class="form-control" id="date" name="date" value="{{date('Y-m-d')}}">
                                     </div>
-
+                    
                                     <!-- Botões de horário-->
                                     @for ($i = 13; $i < 20; $i++)
                                         <div class="col-6">
