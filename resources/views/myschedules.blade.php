@@ -34,8 +34,10 @@
                                                 {{ $schedule->confirm == 1 ? 'V' : 'X' }}
                                             </td>
                                             <td>
-                                                <form action="">
-                                                    <a href="#"><img src="/img/trash.svg" style="width: 20px"></a>
+                                                <form id="form_{{$schedule['id']}}" action="{{route('schedule.destroy', ['schedule' => $schedule['id']])}}" method="POST">
+                                                  @method('DELETE')
+                                                  @csrf
+                                                    <a href="#" onclick="document.getElementById('form_{{$schedule['id']}}').submit()"><img src="/img/trash.svg" style="width: 20px"></a>
                                                 </form>
                                             </td>
                                         </tr>
