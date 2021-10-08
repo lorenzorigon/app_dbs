@@ -41,14 +41,14 @@
                                     <!-- Botões de horário-->
                                     @for ($i = 13; $i < 20; $i++)
                                         <div class="col-6">
-                                            <input type="radio" name="hour"
+                                            <input id ='{{$i}}' type="radio" name="hour"
                                                 value="{{ $i }}:00">
-                                            <label >{{ $i }}:00</label>
+                                            <label for="{{$i}}">{{ $i }}:00</label>
                                         </div>
                                         <div class="col-6">
-                                            <input type="radio" name="hour"
+                                            <input id ='{{$i*2}}' type="radio" name="hour"
                                                 value="{{ $i }}:30">
-                                            <label>{{ $i }}:30</label>
+                                            <label for ='{{$i*2}}'>{{ $i }}:30</label>
                                         </div>
                                     @endfor
 
