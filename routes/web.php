@@ -27,4 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //admin
 
-Route::get('/admin', [App\Http\Controllers\ScheduleController::class, 'dailySchedules']);
+Route::get('/admin', [App\Http\Controllers\ScheduleController::class, 'dailySchedules'])->name('admin');

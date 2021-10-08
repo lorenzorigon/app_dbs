@@ -21,13 +21,13 @@
                                     <!-- Seleção de serviço -->
                                     <div class="row align-items-center mb-2 ml-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="service" value="corte"
+                                            <input id="corte" class="form-check-input" type="radio" name="service" value="corte"
                                                 checked>
-                                            <label class="form-check-label mr-2" for="corte"> Corte </label>
+                                            <label for="corte" class="form-check-label mr-2" for="corte"> Corte </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="service" value="barba">
-                                            <label class="form-check-label" for="barba"> Barba </label>
+                                            <input id="barba" class="form-check-input" type="radio" name="service" value="barba">
+                                            <label for="barba" class="form-check-label" for="barba"> Barba </label>
                                         </div>
                                     </div>
 

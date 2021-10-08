@@ -19,8 +19,10 @@
                             </p>
                         </div>
                         <div class="col-6 align-self-center">
-                            <form action="">
-                                <button class="btn {{ $schedule->confirm ? 'btn-success' : 'btn-danger' }} btn-md">
+                            <form action="{{route('schedule.update', ['schedule' => $schedule])}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn {{ $schedule->confirm ? 'btn-success' : 'btn-danger' }} btn-md">
                                     {{ $schedule->confirm ? 'Confirmado' : 'Confirmar' }}
                                 </button>
                             </form>

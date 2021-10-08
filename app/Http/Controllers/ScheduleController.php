@@ -82,13 +82,14 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         $schedule = Schedule::find($id);
-        if($schedule['id'] == 0){
-            $schedule['id'] == 1;
+        if($schedule['confirm'] == 0){
+            $schedule['confirm'] = 1;
         }else{
-            $schedule['id'] == 0;
+            $schedule['confirm'] = 0;
         }
         $schedule->save();
-        return $schedule;
+
+        return redirect()->route('admin');
     }
 
     /**
