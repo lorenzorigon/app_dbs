@@ -18,6 +18,11 @@ class ScheduleController extends Controller
         return view('myschedules', ['schedules' => $schedules]);
     }
 
+    public function dailySchedules(){
+        $schedules = Schedule::where('day', date('Y-m-d'))->with('user')->get();
+        return view('admin.schedules', ['schedules' => $schedules]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -77,7 +82,11 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         $schedule = Schedule::find($id);
-        $schedule->fill($request->all());
+        if($schedule['id'] == 0){
+            $schedule['id'] == 1;
+        }else{
+            $schedule['id'] == 0;
+        }
         $schedule->save();
         return $schedule;
     }

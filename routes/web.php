@@ -27,6 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //admin
 
-Route::get('/admin', function(){
-    return view('admin.schedules');
-});
+Route::get('/admin', [App\Http\Controllers\ScheduleController::class, 'dailySchedules']);

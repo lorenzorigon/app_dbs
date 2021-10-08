@@ -3,40 +3,29 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Agenda do Dia 
+            Agenda do Dia
         </div>
-        
+
         <!-- Area administrativa estatica (Implementar dinâmica)-->
         <div class="card-body">
             <div class="container">
                 <div class="row">
-                    <div class="col align-self-center">
-                        <p>
-                            Horário: 14:00
-                            Serviço: Corte
-                            Cliente: Lorenzo
-                        </p>
-                    </div>
-                    <div class="col align-self-center">
-                        <button class="btn btn-success btn-md">
-                            Confirmado
-                        </button>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col align-self-center">
-                        <p>
-                            Horário: 14:30
-                            Serviço: Corte
-                            Cliente: Emiliano
-                        </p>
-                    </div>
-                    <div class="col align-self-center">
-                        <button class="btn btn-danger btn-md">
-                            Confirmar
-                        </button>
-                    </div>
+                    @foreach ($schedules as $schedule)
+                        <div class="col-6 align-self-center">
+                            <p>
+                                Horário: {{ $schedule->hour }} hrs
+                                Serviço: {{ $schedule->service }}
+                                Cliente: {{ $schedule->user->name }}
+                            </p>
+                        </div>
+                        <div class="col-6 align-self-center">
+                            <form action="">
+                                <button class="btn {{ $schedule->confirm ? 'btn-success' : 'btn-danger' }} btn-md">
+                                    {{ $schedule->confirm ? 'Confirmado' : 'Confirmar' }}
+                                </button>
+                            </form>
+                        </div>
+                    @endforeach
                 </div>
                 <hr>
             </div>
