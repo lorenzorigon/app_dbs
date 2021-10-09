@@ -41,6 +41,7 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(Schedule::rules(), Schedule::feedback());
         $schedule = $request->only(['day', 'hour', 'service', '_token']);
         $schedule['user_id'] = auth()->user()->id;
         $schedule['confirm'] = 0;
@@ -59,17 +60,6 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::find($id);
         return $schedule;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Schedule  $schedule
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Schedule $schedule)
-    {
-        //return view de edição
     }
 
     /**
