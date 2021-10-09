@@ -30,7 +30,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-       return view('schedule', ['message' => '']);
+       return view('schedule_create', ['message' => '']);
     }
 
     /**
@@ -45,7 +45,7 @@ class ScheduleController extends Controller
         $schedule = $request->only(['day', 'hour', 'service', '_token']);
         $schedule['user_id'] = auth()->user()->id;
         $schedule = Schedule::create($schedule);
-        return view('schedule', ['message' => 'Horário agendado com sucesso!']);
+        return view('schedule_create', ['message' => 'Horário agendado com sucesso!']);
     }
 
     /**
@@ -90,6 +90,6 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::find($id);
         $schedule->delete();
-        return redirect()->route('schedule.index');
+        return redirect()->route('schedule.index'); // retornar mensagem de deletado com sucesso (falta fazer)
     }
 }
