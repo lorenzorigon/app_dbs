@@ -44,7 +44,6 @@ class ScheduleController extends Controller
         $request->validate(Schedule::rules(), Schedule::feedback());
         $schedule = $request->only(['day', 'hour', 'service', '_token']);
         $schedule['user_id'] = auth()->user()->id;
-        $schedule['confirm'] = 0;
         $schedule = Schedule::create($schedule);
 
         return $schedule;

@@ -18,7 +18,7 @@ class Schedule extends Model
     public static function rules(){
         return [
             'hour' => 'required',
-            'day' => 'required | date_format:"d/m/Y"',
+            'day' => 'required | date_format:"Y-m-d"',
             'service' => 'required',
         ];
     }
