@@ -21,13 +21,17 @@
                                     <!-- Seleção de serviço -->
                                     <div class="row align-items-center mb-2 ml-3">
                                         <div class="form-check">
-                                            <input id="corte" class="form-check-input" type="radio" name="service" value="corte"
+                                            <input id="corte" class="form-check-input" type="radio" name="service" value="Corte"
                                                 checked>
-                                            <label for="corte" class="form-check-label mr-2" for="corte"> Corte </label>
+                                            <label for="corte" class="form-check-label mr-2"> Corte </label>
                                         </div>
                                         <div class="form-check">
-                                            <input id="barba" class="form-check-input" type="radio" name="service" value="barba">
-                                            <label for="barba" class="form-check-label" for="barba"> Barba </label>
+                                            <input id="barba" class="form-check-input" type="radio" name="service" value="Barba">
+                                            <label for="barba" class="form-check-label mr-2"> Barba </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="completo" class="form-check-input" type="radio" name="service" value="Completo">
+                                            <label for="completo" class="form-check-label"> Corte & Barba </label>
                                         </div>
                                     </div>
 
@@ -41,14 +45,14 @@
                                     <!-- Botões de horário-->
                                     @for ($i = 13; $i < 20; $i++)
                                         <div class="col-6">
-                                            <input id ='{{$i}}' type="radio" name="hour"
+                                            <input id ='{{$i}}' type="radio"  name="hour"
                                                 value="{{ $i }}:00">
-                                            <label for="{{$i}}">{{ $i }}:00</label>
+                                            <label  for="{{$i}}">{{ $i }}:00</label>
                                         </div>
                                         <div class="col-6">
                                             <input id ='{{$i*2}}' type="radio" name="hour"
                                                 value="{{ $i }}:30">
-                                            <label for ='{{$i*2}}'>{{ $i }}:30</label>
+                                            <label for='{{$i*2}}'>{{ $i }}:30</label>
                                         </div>
                                     @endfor
 
