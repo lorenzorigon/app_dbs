@@ -30,7 +30,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-       return view('schedule');
+       return view('schedule', ['message' => '']);
     }
 
     /**
@@ -45,8 +45,7 @@ class ScheduleController extends Controller
         $schedule = $request->only(['day', 'hour', 'service', '_token']);
         $schedule['user_id'] = auth()->user()->id;
         $schedule = Schedule::create($schedule);
-
-        return $schedule;
+        return view('schedule', ['message' => 'Horário agendado com sucesso!']);
     }
 
     /**

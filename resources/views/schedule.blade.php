@@ -14,6 +14,12 @@
                             </div>
                         @endif
 
+                        <!-- Mensagem de Sucesso-->
+                        @if ($message != '')
+                            <p class="alert alert-success">{{$message}}</p>
+                        @endif
+
+                        <!-- Mensagem de Validação de campos-->
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                     @foreach ($errors->all() as $error)

@@ -14,6 +14,11 @@
                             </div>
                         @endif
 
+                        <!-- Mensagem de Sucesso na remoção 
+                        @ ($message)
+                            <p class="alert alert-success">{message}}</p>
+                        @
+                        -->
                         <div class="table-responsive">
                             <table class="table text-center">
                                 <thead>
