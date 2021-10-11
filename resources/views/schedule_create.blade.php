@@ -18,8 +18,8 @@
                         @endif
 
                         <!-- Mensagem de Sucesso-->
-                        @if ($message != '')
-                            <p class="alert {{$type}}">{{$message}}</p>
+                        @if (session('message'))
+                            <p class="alert {{session('type')}}">{{session('message')}}</p>
                         @endif
 
                         <!-- Mensagem de Validação de campos-->

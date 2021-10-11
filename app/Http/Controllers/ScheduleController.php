@@ -28,7 +28,7 @@ class ScheduleController extends Controller
         /*$options = new ListScheduleOptionsService();
         $options->listOptions();*/
 
-        return view('schedule_create', ['message' => '']);
+        return view('schedule_create');
     }
 
     public function store(Request $request)
@@ -40,11 +40,11 @@ class ScheduleController extends Controller
         try{
             $schedulingService->store(auth()->user(), $scheduleData['day'], $scheduleData['hour'], $scheduleData['service']);
         }catch (UnprocessableEntityHttpException){
-            return view('schedule_create', ['message' => 'Já existe um agendamento nesse horário!', 'type' => 'alert-danger']);
+            return redirect()->back()->with('message', 'Horário já está agendado!')->with('type', 'alert-danger');
         }
 
 
-        return view('schedule_create', ['message' => 'Horário agendado com sucesso!', 'type' => 'alert-success']);
+        return redirect()->back()->with('message', 'Horário marcado com sucesso!')->with('type', 'alert-success');
     }
 
     public function toggleConfirm(Request $request, Schedule $schedule)
