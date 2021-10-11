@@ -30,11 +30,13 @@ Route::group(['prefix' => 'schedule'], function () {
 
 });
 
+//rotas de autenticação
 Auth::routes();
 
+//home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 //admin
-
-Route::get('/admin', [App\Http\Controllers\ScheduleController::class, 'dailySchedules'])->name('admin');
+Route::get('/admin', [App\Http\Controllers\ScheduleController::class, 'dailySchedules'])
+    ->name('admin')->middleware('auth', 'auth.admin');
