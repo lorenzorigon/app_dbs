@@ -7,6 +7,7 @@ use App\Services\Schedule\ListScheduleOptions\ListScheduleOptionsService;
 use App\Services\Schedule\StoreScheduleService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class ScheduleController extends Controller
 {
@@ -16,28 +17,34 @@ class ScheduleController extends Controller
         return view('myschedules', ['schedules' => $schedules]);
     }
 
-    public function dailySchedules(){
+    public function dailySchedules()
+    {
         $schedules = Schedule::query()->whereDate('schedule', date('Y-m-d'))->with('user')->get();
         return view('admin.schedules', ['schedules' => $schedules]);
     }
 
     public function create()
     {
-        $options = new ListScheduleOptionsService();
-        $options->listOptions();
+        /*$options = new ListScheduleOptionsService();
+        $options->listOptions();*/
 
-       return view('schedule_create', ['message' => '']);
+        return view('schedule_create', ['message' => '']);
     }
 
     public function store(Request $request)
     {
         $request->validate(Schedule::rules(), Schedule::feedback());
-        $scheduleData = $request->only('day','hour','service');
+        $scheduleData = $request->only('day', 'hour', 'service');
 
         $schedulingService = new StoreScheduleService();
-        $schedulingService->store(auth()->user(), $scheduleData['day'], $scheduleData['hour'], $scheduleData['service']);
+        try{
+            $schedulingService->store(auth()->user(), $scheduleData['day'], $scheduleData['hour'], $scheduleData['service']);
+        }catch (UnprocessableEntityHttpException){
+            return view('schedule_create', ['message' => 'Já existe um agendamento nesse horário!', 'type' => 'alert-danger']);
+        }
 
-        return view('schedule_create', ['message' => 'Horário agendado com sucesso!']);
+
+        return view('schedule_create', ['message' => 'Horário agendado com sucesso!', 'type' => 'alert-success']);
     }
 
     public function toggleConfirm(Request $request, Schedule $schedule)

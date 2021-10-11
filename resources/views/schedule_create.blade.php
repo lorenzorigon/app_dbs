@@ -19,7 +19,7 @@
 
                         <!-- Mensagem de Sucesso-->
                         @if ($message != '')
-                            <p class="alert alert-success">{{$message}}</p>
+                            <p class="alert {{$type}}">{{$message}}</p>
                         @endif
 
                         <!-- Mensagem de Validação de campos-->

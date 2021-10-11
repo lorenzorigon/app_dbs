@@ -6,7 +6,6 @@
             Agenda do Dia
         </div>
 
-        <!-- Area administrativa estatica (Implementar dinâmica)-->
         <div class="card-body">
             <div class="container">
                 <div class="row">
