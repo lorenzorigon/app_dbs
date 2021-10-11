@@ -11,6 +11,21 @@ class Schedule extends Model
 
     protected $fillable = ['day', 'hour', 'confirm', 'user_id', 'service'];
 
+    public const SERVICE_CORTE = 1;
+    public const SERVICE_BARBA = 2;
+    public const SERVICE_COMPLETO = 3;
+    public const SERVICE_DURATIONS = [
+        self::SERVICE_CORTE => 30,
+        self::SERVICE_BARBA => 30,
+        self::SERVICE_COMPLETO => 60,
+    ];
+    public const SERVICE_NAMES = [
+        self::SERVICE_CORTE => 'Corte',
+        self::SERVICE_BARBA => 'Barba',
+        self::SERVICE_COMPLETO => 'Completo',
+    ];
+
+
     public function user(){
         return $this->belongsTo('App\Models\User');
     }

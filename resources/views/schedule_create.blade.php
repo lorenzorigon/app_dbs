@@ -1,3 +1,6 @@
+<?php
+   use App\Models\Schedule;
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -36,17 +39,17 @@
                                     <div class="row align-items-center mb-2 ml-3">
                                         <div class="form-check">
                                             <input id="corte" class="form-check-input" type="radio" name="service"
-                                                value="Corte" checked>
+                                                value="{{Schedule::SERVICE_CORTE}}" checked>
                                             <label for="corte" class="form-check-label mr-2"> Corte </label>
                                         </div>
                                         <div class="form-check">
                                             <input id="barba" class="form-check-input" type="radio" name="service"
-                                                value="Barba">
+                                                value="{{Schedule::SERVICE_BARBA}}">
                                             <label for="barba" class="form-check-label mr-2"> Barba </label>
                                         </div>
                                         <div class="form-check">
                                             <input id="completo" class="form-check-input" type="radio" name="service"
-                                                value="Completo">
+                                                value="{{Schedule::SERVICE_COMPLETO}}">
                                             <label for="completo" class="form-check-label"> Corte & Barba </label>
                                         </div>
                                     </div>

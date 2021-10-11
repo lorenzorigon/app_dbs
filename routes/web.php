@@ -14,16 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('/home');
 });
 
 
-//route resource para schedule
+//Schedule routes
 Route::resource('schedule', App\Http\Controllers\ScheduleController::class);
+Route::group(['prefix' => 'schedule'], function () {
+    Route::get('/', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/create', [App\Http\Controllers\ScheduleController::class, 'create']);
+    Route::post('/', [App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');
+    Route::patch('toggleConfirm/{schedule}', [App\Http\Controllers\ScheduleController::class, 'toggleConfirm'])->name('schedule.toggleConfirm');
+    Route::delete('/{schedule}', [App\Http\Controllers\ScheduleController::class, 'destroy'])->name('schedule.destroy');
+
+
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 //admin
 

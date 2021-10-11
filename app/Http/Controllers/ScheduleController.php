@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
+use App\Services\Schedule\ListScheduleOptions\ListScheduleOptionsService;
+use App\Services\Schedule\StoreScheduleService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $schedules = Schedule::where('user_id', auth()->user()->id)->get();
@@ -19,77 +17,40 @@ class ScheduleController extends Controller
     }
 
     public function dailySchedules(){
-        $schedules = Schedule::where('day', date('Y-m-d'))->with('user')->get();
+        $schedules = Schedule::query()->whereDate('schedule', date('Y-m-d'))->with('user')->get();
         return view('admin.schedules', ['schedules' => $schedules]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
+        $options = new ListScheduleOptionsService();
+        $options->listOptions();
+
        return view('schedule_create', ['message' => '']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate(Schedule::rules(), Schedule::feedback());
-        $schedule = $request->only(['day', 'hour', 'service', '_token']);
-        $schedule['user_id'] = auth()->user()->id;
-        $schedule = Schedule::create($schedule);
+        $scheduleData = $request->only('day','hour','service');
+
+        $schedulingService = new StoreScheduleService();
+        $schedulingService->store(auth()->user(), $scheduleData['day'], $scheduleData['hour'], $scheduleData['service']);
+
         return view('schedule_create', ['message' => 'Horário agendado com sucesso!']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Schedule  $schedule
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function toggleConfirm(Request $request, Schedule $schedule)
     {
-        $schedule = Schedule::find($id);
-        return $schedule;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Schedule  $schedule
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $schedule = Schedule::find($id);
-        if($schedule['confirm'] == 0){
-            $schedule['confirm'] = 1;
-        }else{
-            $schedule['confirm'] = 0;
-        }
+        $schedule->confirm = !$schedule->confirm;
         $schedule->save();
 
         return redirect()->route('admin');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Schedule  $schedule
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Schedule $schedule)
     {
-        $schedule = Schedule::find($id);
         $schedule->delete();
-        return redirect()->route('schedule.index'); // retornar mensagem de deletado com sucesso (falta fazer)
+        return redirect()->back()->with('message', 'Agendamento cancelado com sucesso!');
     }
 }

@@ -11,15 +11,18 @@
             <div class="container">
                 <div class="row">
                     @foreach ($schedules as $schedule)
+                        @php
+                            $scheduleDate = \Carbon\Carbon::create($schedule->schedule);
+                        @endphp
                         <div class="col-6 align-self-center">
                             <p>
-                                Horário: {{ $schedule->hour }} hrs
-                                Serviço: {{ $schedule->service }}
+                                Horário: {{ $scheduleDate->format('H:i') }} hrs
+                                Serviço: {{ \App\Models\Schedule::SERVICE_NAMES[$schedule->service] }}
                                 Cliente: {{ $schedule->user->name }}
                             </p>
                         </div>
                         <div class="col-6 align-self-center">
-                            <form action="{{route('schedule.update', ['schedule' => $schedule])}}" method="POST">
+                            <form action="{{route('schedule.toggleConfirm', ['schedule' => $schedule])}}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" class="btn {{ $schedule->confirm ? 'btn-success' : 'btn-danger' }} btn-md">

@@ -14,11 +14,10 @@
                             </div>
                         @endif
 
-                        <!-- Mensagem de Sucesso na remoção 
-                        @ ($message)
-                            <p class="alert alert-success">{message}}</p>
-                        @
-                        -->
+                        @if (session('message'))
+                            <p class="alert alert-success">{{session('message')}}</p>
+                        @endif
+
                         <div class="table-responsive">
                             <table class="table text-center">
                                 <thead>
@@ -31,9 +30,12 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($schedules as $schedule)
+                                        @php
+                                              $scheduleDate = \Carbon\Carbon::create($schedule->schedule);
+                                        @endphp
                                         <tr>
-                                            <td>{{ date('d-m', strtotime($schedule->day)); }}</td>
-                                            <td>{{ $schedule->hour }}</td>
+                                            <td>{{$scheduleDate->format('d/m')}}</td>
+                                            <td>{{ $scheduleDate->format('H:i') }}</td>
                                             <td
                                                 style="color: {{ $schedule->confirm == 1 ? 'green' : 'red' }}; font-weight:bold">
                                                 {{ $schedule->confirm == 1 ? 'V' : 'X' }}
