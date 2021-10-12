@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::resource('schedule', App\Http\Controllers\ScheduleController::class);
 Route::group(['prefix' => 'schedule'], function () {
     Route::get('/', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule.index');
-    Route::get('/create', [App\Http\Controllers\ScheduleController::class, 'create']);
+    Route::get('/create', [App\Http\Controllers\ScheduleController::class, 'create'])->name('schedule.create');
     Route::post('/', [App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');
     Route::patch('toggleConfirm/{schedule}', [App\Http\Controllers\ScheduleController::class, 'toggleConfirm'])->name('schedule.toggleConfirm');
     Route::delete('/{schedule}', [App\Http\Controllers\ScheduleController::class, 'destroy'])->name('schedule.destroy');
