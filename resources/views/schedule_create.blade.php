@@ -66,12 +66,12 @@
                                         <div class="col-6">
                                             <input id='{{ $i }}' type="radio" name="hour"
                                                 value="{{ $i }}:00">
-                                            <label for="{{ $i }}">{{ $i }}:00</label>
+                                            <label class="label" for="{{ $i }}">{{ $i }}:00</label>
                                         </div>
                                         <div class="col-6">
                                             <input id='{{ $i * 2 }}' type="radio" name="hour"
                                                 value="{{ $i }}:30">
-                                            <label for='{{ $i * 2 }}'>{{ $i }}:30</label>
+                                            <label class="label" for='{{ $i * 2 }}'>{{ $i }}:30</label>
                                         </div>
                                     @endfor
 
