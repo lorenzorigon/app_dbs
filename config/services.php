@@ -23,7 +23,7 @@ return [
     'nexmo' => [
         'sms_from' => '15556666666',
     ],
-    
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

@@ -20,23 +20,25 @@
 
                         @if($schedules->all() == [])
                             <p>Você ainda não possui horário marcado,
-                                <a href="{{route('schedule.create')}}">agendar horário</a>.</p>
+                                <a href="{{route('schedule.create')}}">agendar horário</a>.
+                            </p>
                         @endif
-                        @foreach ($schedules as $schedule)
-                            @php
-                                $scheduleDate = \Carbon\Carbon::create($schedule->schedule);
-                            @endphp
-                            <div class="table-responsive">
-                                <table class="table text-center">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Dia</th>
-                                        <th scope="col">Horário</th>
-                                        <th scope="col">Confirmado</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Dia</th>
+                                    <th scope="col">Horário</th>
+                                    <th scope="col">Confirmado</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($schedules as $schedule)
+                                    @php
+                                        $scheduleDate = \Carbon\Carbon::create($schedule->schedule);
+                                    @endphp
                                     <tr>
                                         <td>{{$scheduleDate->format('d/m')}}</td>
                                         <td>{{ $scheduleDate->format('H:i') }}</td>
@@ -56,13 +58,13 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
 @endsection
