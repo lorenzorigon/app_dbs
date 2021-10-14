@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    Douglas <img src="/img/logo_white.svg" style="width: 50px;"> Shop 
+                    Douglas <img src="/img/logo_white.svg" style="width: 50px;"> Shop
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -52,6 +52,11 @@
                                 </li>
                             @endif
                         @else
+
+                            @if(auth()->user()->is_admin)
+                                <a href="{{route('admin')}}">Admin</a>
+                            @endif
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -74,14 +79,14 @@
                 </div>
             </div>
         </nav>
-        
+
         <main class="py-4">
             @yield('content')
         </main>
 
         <footer class="footer bg-dark">
             <p>Av. Tancredo Neves 1100 <br>(55) 9 8437-5801</p>
-            
+
         </footer>
     </div>
 </body>
