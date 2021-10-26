@@ -18,7 +18,7 @@
                             <p class="alert alert-success">{{session('message')}}</p>
                         @endif
 
-                        @if($schedules->all() == [])
+                        @if($schedules->isEmpty())
                             <p>Você ainda não possui horário marcado,
                                 <a href="{{route('schedule.create')}}">agendar horário</a>.
                             </p>
@@ -37,7 +37,7 @@
                                 <tbody>
                                 @foreach ($schedules as $schedule)
                                     @php
-                                        $scheduleDate = \Carbon\Carbon::create($schedule->schedule);
+                                        $scheduleDate = \Carbon\Carbon::create($schedule->start_at);
                                     @endphp
                                     <tr>
                                         <td>{{$scheduleDate->format('d/m')}}</td>

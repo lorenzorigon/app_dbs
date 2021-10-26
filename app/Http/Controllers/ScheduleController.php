@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
-use App\Services\Schedule\ListScheduleOptions\ListScheduleOptionsService;
+use App\Models\User;
+use App\Services\Schedule\ListScheduleOptions\ListAppointmentService;
 use App\Services\Schedule\StoreScheduleService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,13 +20,21 @@ class ScheduleController extends Controller
 
     public function dailySchedules()
     {
-        $schedules = Schedule::query()->whereDate('schedule', date('Y-m-d'))->with('user')->get();
+        $schedules = Schedule::query()->whereDate('start_at', date('Y-m-d'))->with('user')->get();
         return view('admin.schedules', ['schedules' => $schedules]);
+    }
+
+    public function getAppointments(Request $request){
+        $day = $request->get('day');
+        $service = $request->get('service');
+
+        $listAppointmentService = new ListAppointmentService();
+        return response()->json($listAppointmentService->list($day, $service, User::query()->first()));
     }
 
     public function create()
     {
-        /*$options = new ListScheduleOptionsService();
+        /*$options = new ListAppointmentService();
         $options->listOptions();*/
 
         return view('schedule_create');
@@ -34,11 +43,11 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         $request->validate(Schedule::rules(), Schedule::feedback());
-        $scheduleData = $request->only('day', 'hour', 'service');
+        $scheduleData = $request->only('start_at_day', 'start_at_hour', 'service');
 
         $schedulingService = new StoreScheduleService();
         try{
-            $schedulingService->store(auth()->user(), $scheduleData['day'], $scheduleData['hour'], $scheduleData['service']);
+            $schedulingService->store(auth()->user(), $scheduleData['start_at_day'], $scheduleData['start_at_hour'], $scheduleData['service']);
         }catch (UnprocessableEntityHttpException){
             return redirect()->back()->with('message', 'Horário já está agendado!')->with('type', 'alert-danger');
         }

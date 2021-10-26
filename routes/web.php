@@ -19,7 +19,6 @@ Route::get('/', function () {
 
 
 //Schedule routes
-Route::resource('schedule', App\Http\Controllers\ScheduleController::class);
 Route::group(['prefix' => 'schedule'], function () {
     Route::get('/', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule.index');
     Route::get('/create', [App\Http\Controllers\ScheduleController::class, 'create'])->name('schedule.create');
@@ -27,7 +26,7 @@ Route::group(['prefix' => 'schedule'], function () {
     Route::patch('toggleConfirm/{schedule}', [App\Http\Controllers\ScheduleController::class, 'toggleConfirm'])->name('schedule.toggleConfirm');
     Route::delete('/{schedule}', [App\Http\Controllers\ScheduleController::class, 'destroy'])->name('schedule.destroy');
 
-
+    Route::get('/appointments', [App\Http\Controllers\ScheduleController::class, 'getAppointments'])->name('schedule.appointments');
 });
 
 //rotas de autenticação
@@ -40,3 +39,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin
 Route::get('/admin', [App\Http\Controllers\ScheduleController::class, 'dailySchedules'])
     ->name('admin')->middleware('auth', 'auth.admin');
+
+//

@@ -11,7 +11,7 @@
                 <div class="row">
                     @foreach ($schedules as $schedule)
                         @php
-                            $scheduleDate = \Carbon\Carbon::create($schedule->schedule);
+                            $scheduleDate = \Carbon\Carbon::create($schedule->start_at);
                         @endphp
                         <div class="col-6 align-self-center">
                             <p>

@@ -5,11 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $start_at
+ * @property string $end_at
+ * @property boolean $confirmed
+ * @property int $user_id
+ * @property int $service
+ * @property string $created_at
+ * @property string $updated_at
+ */
 class Schedule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['day', 'hour', 'confirm', 'user_id', 'service'];
+    protected $fillable = ['start_at', 'end_at', 'confirmed', 'user_id', 'service'];
 
     public const SERVICE_CORTE = 1;
     public const SERVICE_BARBA = 2;
@@ -32,17 +42,17 @@ class Schedule extends Model
 
     public static function rules(){
         return [
-            'hour' => 'required',
-            'day' => 'required | date_format:"Y-m-d"',
+            'start_at_hour' => 'required',
+            'start_at_day' => 'required | date_format:"Y-m-d"',
             'service' => 'required',
         ];
     }
 
     public static function feedback(){
         return [
-            'hour.required' => 'Selecione um Horário!',
-            'day.required' => 'Selecione uma data!',
-            'day.date_format' => 'Informe uma data válida!',
+            'start_at_hour.required' => 'Selecione um Horário!',
+            'start_at_day.required' => 'Selecione uma data!',
+            'start_at_day.date_format' => 'Informe uma data válida!',
             'service.required' => 'Selecione um serviço!'
         ];
     }

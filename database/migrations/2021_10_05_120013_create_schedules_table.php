@@ -16,8 +16,9 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->dateTime('schedule');
-            $table->boolean('confirm')->default('0');
+            $table->dateTime('start_at');
+            $table->dateTime('end_at');
+            $table->boolean('confirmed')->default('0');
             $table->unsignedBigInteger('user_id');
             $table->string('service');
 

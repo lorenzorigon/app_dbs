@@ -5,16 +5,20 @@ namespace App\Services\Schedule;
 use App\Models\Schedule;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class StoreScheduleService
 {
     public function store(User $user, string $day, string $hour, int $service): Schedule
     {
-        $this->validateHour($day, $hour, $service);
+        $startAt = Carbon::createFromFormat('Y-m-d H:i', sprintf('%s %s', $day, $hour));
+        $endAt = $startAt->clone()->addMinutes(Schedule::SERVICE_DURATIONS[$service]);
+        $this->validateHour($startAt, $endAt);
 
         $schedule = new Schedule();
-        $schedule->schedule = sprintf('%s %s', $day, $hour);
+        $schedule->start_at = $startAt->format('Y-m-d H:i');
+        $schedule->end_at = $endAt->format('Y-m-d H:i');
         $schedule->service = $service;
         $schedule->user_id = $user->id;
 
@@ -22,14 +26,23 @@ class StoreScheduleService
         return $schedule;
     }
 
-    private function validateHour($day, $hour, $service)
+    /**
+     * 10:00 > 10:30
+     *
+     * SELECT * FROM schedules WHERE (start_at >= '2021-10-23 14:30' OR end_at <= '2021-10-23 14:30') AND (start_at >= '2021-10-23 15:30' OR end_at >= '2021-10-23 15:30')
+     *
+     */
+    private function validateHour(Carbon $startAt, Carbon $endAt)
     {
-        $scheduleServiceDuration = Schedule::SERVICE_DURATIONS[$service];
-        $scheduleStartDate = Carbon::createFromFormat('Y-m-d H:i', sprintf('%s %s', $day, $hour));
-        $scheduleEndDate = $scheduleStartDate->clone()->addMinutes($scheduleServiceDuration);
-
         $existsSchedule = Schedule::query()
-            ->whereBetween('schedule', [$scheduleStartDate->format('Y-m-d H:i'), $scheduleEndDate->subMinute()->format('Y-m-d H:i')])
+            ->where(function (Builder $builder) use ($startAt) {
+                $builder->where('start_at', '<=', $startAt->format('Y-m-d H:i'))
+                    ->where('end_at', '>', $startAt->format('Y-m-d H:i'));
+            })
+            ->orWhere(function (Builder $builder) use ($endAt) {
+                $builder->where('start_at', '<', $endAt->format('Y-m-d H:i'))
+                    ->where('end_at', '>=', $endAt->format('Y-m-d H:i'));
+            })
             ->exists();
 
         if ($existsSchedule) {
