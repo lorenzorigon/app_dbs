@@ -90,4 +90,4 @@
     </div>
 @endsection
 
-<script src="{{ asset('js/schedules/create.js') }}"></script>
+<script src="{{ asset('js/schedules/create.js') }}" defer></script>

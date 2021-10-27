@@ -26,7 +26,7 @@ Route::group(['prefix' => 'schedule'], function () {
     Route::patch('toggleConfirm/{schedule}', [App\Http\Controllers\ScheduleController::class, 'toggleConfirm'])->name('schedule.toggleConfirm');
     Route::delete('/{schedule}', [App\Http\Controllers\ScheduleController::class, 'destroy'])->name('schedule.destroy');
 
-    Route::get('/appointments', [App\Http\Controllers\ScheduleController::class, 'getAppointments'])->name('schedule.appointments');
+    Route::get('/appointments', [App\Http\Controllers\ScheduleController::class, 'getAppointments']);
 });
 
 //rotas de autenticação

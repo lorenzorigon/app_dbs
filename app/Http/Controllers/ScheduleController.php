@@ -27,7 +27,6 @@ class ScheduleController extends Controller
     public function getAppointments(Request $request){
         $day = $request->get('day');
         $service = $request->get('service');
-
         $listAppointmentService = new ListAppointmentService();
         return response()->json($listAppointmentService->list($day, $service, User::query()->first()));
     }
