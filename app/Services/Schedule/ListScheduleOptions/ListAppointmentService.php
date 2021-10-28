@@ -31,7 +31,6 @@ class ListAppointmentService
 
             $scheduleAtTime = $this->getAppointmentAtTime($currentTime);
 
-
             if ($scheduleAtTime) {
                 if ($scheduleAtTime->user_id == $user->id) {
                     $appointment->setFilledByUser(true);

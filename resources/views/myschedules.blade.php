@@ -43,8 +43,8 @@
                                         <td>{{$scheduleDate->format('d/m')}}</td>
                                         <td>{{ $scheduleDate->format('H:i') }}</td>
                                         <td
-                                            style="color: {{ $schedule->confirm == 1 ? 'green' : 'red' }}; font-weight:bold">
-                                            {{ $schedule->confirm == 1 ? 'V' : 'X' }}
+                                            style="color: {{ $schedule->confirmed == 1 ? 'green' : 'red' }}; font-weight:bold">
+                                            {{ $schedule->confirmed == 1 ? 'V' : 'X' }}
                                         </td>
                                         <td>
                                             <form id="form_{{$schedule['id']}}"

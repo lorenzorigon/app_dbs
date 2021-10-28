@@ -24,8 +24,8 @@
                             <form action="{{route('schedule.toggleConfirm', ['schedule' => $schedule])}}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn {{ $schedule->confirm ? 'btn-success' : 'btn-danger' }} btn-md">
-                                    {{ $schedule->confirm ? 'Confirmado' : 'Confirmar' }}
+                                <button type="submit" class="btn {{ $schedule->confirmed ? 'btn-success' : 'btn-danger' }} btn-md">
+                                    {{ $schedule->confirmed ? 'Confirmado' : 'Confirmar' }}
                                 </button>
                             </form>
                         </div>

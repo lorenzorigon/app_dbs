@@ -28,7 +28,7 @@ class ScheduleController extends Controller
         $day = $request->get('day');
         $service = $request->get('service');
         $listAppointmentService = new ListAppointmentService();
-        return response()->json($listAppointmentService->list($day, $service, User::query()->first()));
+        return response()->json($listAppointmentService->list($day, $service, auth()->user()));
     }
 
     public function create()
@@ -57,7 +57,7 @@ class ScheduleController extends Controller
 
     public function toggleConfirm(Request $request, Schedule $schedule)
     {
-        $schedule->confirm = !$schedule->confirm;
+        $schedule->confirmed = !$schedule->confirmed;
         $schedule->save();
 
         return redirect()->route('admin');
