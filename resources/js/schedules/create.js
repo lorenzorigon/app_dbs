@@ -45,12 +45,15 @@ function req(service, day){
 }
 
 function loadHours(hours){
-
+    //limpar tela
+    if(document.getElementById('divParent')) {
+        divParent.parentNode.removeChild(divParent);
+    }
     divParent = document.createElement('div');
     divParent.setAttribute('class', 'row');
+    divParent.setAttribute('id', 'divParent');
 
-    //limpar tela
-    //parent.removeChild(divParent);
+
 
     for(let i = 0; i < hours.length; i++) {
         //criando os elementos
