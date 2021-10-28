@@ -1,8 +1,10 @@
-const {value} = require("lodash/seq");
+const {value, next} = require("lodash/seq");
 const services = document.getElementsByName('service');
 let day = document.querySelector('#day');
 const axios = require('axios').default;
 let service = setService();
+let parent = document.querySelector('div .card-body form .container .row.text-center');
+let btnSubmit = document.querySelector('div #submit');
 
 day.addEventListener('input', (day) => {
     this.day = day.target.value;
@@ -43,9 +45,47 @@ function req(service, day){
 }
 
 function loadHours(hours){
-    hours.forEach((hour) => {
-       console.log(hour);
-    });
+
+    divParent = document.createElement('div');
+    divParent.setAttribute('class', 'row');
+
+    //limpar tela
+    //parent.removeChild(divParent);
+
+    for(let i = 0; i < hours.length; i++) {
+        //criando os elementos
+        let div = document.createElement('div');
+        let input = document.createElement('input');
+        let label = document.createElement('label');
+
+        //definindo as propriedades dos elementos
+        div.setAttribute('class', 'col-6');
+
+        input.setAttribute('id' , i);
+        input.setAttribute('type' , 'radio');
+        input.setAttribute('name' , 'start_at_hour');
+        input.setAttribute('value' , hours[i].hour);
+
+        label.setAttribute('class', 'label');
+        label.setAttribute('for', i);
+        label.innerText = hours[i].hour;
+
+        if(hours[i].filledByOther === true){
+            label.setAttribute('class', 'danger');
+        }else if (hours[i].filledByUser === true){
+            label.setAttribute('class', 'success');
+        }
+
+        //definindo estrutura html
+        div.appendChild(input);
+        div.appendChild(label);
+
+        //adicionar os botões na div interna
+        divParent.appendChild(div);
+
+    }
+    //adicionando a div com os botões na tela
+    parent.insertBefore(divParent, btnSubmit);
 }
 
 

@@ -31,6 +31,7 @@ class ListAppointmentService
 
             $scheduleAtTime = $this->getAppointmentAtTime($currentTime);
 
+
             if ($scheduleAtTime) {
                 if ($scheduleAtTime->user_id == $user->id) {
                     $appointment->setFilledByUser(true);
@@ -41,7 +42,7 @@ class ListAppointmentService
 
             array_push($this->appointments, $appointment->toArray());
 
-            $currentTime->addMinutes($serviceTime);
+            $currentTime->addMinutes(30); //chumbado por hr
         }
 
         return $this->appointments;

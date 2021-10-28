@@ -61,21 +61,21 @@
                                     </div>
 
                                     <!-- Botões de horário-->
-                                    @for ($i = 13; $i < 20; $i++)
-                                        <div class="col-6">
-                                            <input id='{{ $i }}' type="radio" name="start_at_hour"
-                                                value="{{ $i }}:00">
-                                            <label class="label" for="{{ $i }}">{{ $i }}:00</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input id='{{ $i * 2 }}' type="radio" name="start_at_hour"
-                                                value="{{ $i }}:30">
-                                            <label class="label" for='{{ $i * 2 }}'>{{ $i }}:30</label>
-                                        </div>
-                                    @endfor
+{{--                                    @for ($i = 13; $i < 20; $i++)--}}
+{{--                                        <div class="col-6">--}}
+{{--                                            <input id='{{ $i }}' type="radio" name="start_at_hour"--}}
+{{--                                                value="{{ $i }}:00">--}}
+{{--                                            <label class="label" for="{{ $i }}">{{ $i }}:00</label>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-6">--}}
+{{--                                            <input id='{{ $i * 2 }}' type="radio" name="start_at_hour"--}}
+{{--                                                value="{{ $i }}:30">--}}
+{{--                                            <label class="label" for='{{ $i * 2 }}'>{{ $i }}:30</label>--}}
+{{--                                        </div>--}}
+{{--                                    @endfor--}}
 
                                     <!-- Botão para agendar horário -->
-                                    <div class="col-12">
+                                    <div class="col-12" id="submit">
                                         <button class="btn btn-success mt-1" type="submit"
                                             style="width:100%;font-size:20px">Agendar</button>
                                     </div>
