@@ -10,7 +10,7 @@ O agendamento pode ser feito para 3 tipos de serviço: corte, barba e completo (
 Uma vez que o cliente (usuário) agendar um determinado serviço o administrador (dono da barbearia) pode confirmar o serviço para o seu cliente.
 
 ## Layout mobile
-![Mobile](https://github.com/lorenzorigon/app_dbs/blob/main/assets/layout_mobile.jpg) 
+![Mobile](https://github.com/lorenzorigon/app_dbs/blob/main/assets/app_dbs_images.jpg) 
 
 
 # Tecnologias utilizadas
