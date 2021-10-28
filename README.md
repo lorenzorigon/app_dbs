@@ -24,6 +24,12 @@ Uma vez que o cliente (usuário) agendar um determinado serviço o administrador
 ## Database
 - Mysql
 
+# Como melhorar o projeto / futuras melhorias
+Sistema de notificações (via whatsapp):
+- Todo dia sistema disparar mensagem em um grupo específico da barbearia, contendo os horários disponíveis do dia.
+- 1 hora antes do agendamento o sistema notificar o cliente.
+- Sistema notifica ao admin quando alguém solicita um agendamento e notifica o cliente quando o admin confirmar o agendamento.
+
 # Como executar o projeto
 
 ```bash
