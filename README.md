@@ -37,8 +37,17 @@ Sistema de notificações (via whatsapp):
 git clone https://github.com/lorenzorigon/app_dbs
 
 # instalar dependências
+- PHP v8.0.10
+- Node v16.8.0
+- Mysql
+- Composer
 
 # executar o projeto
+(dentro da pasta da aplicação)
+- npm install
+- php artisan migrate
+- php artisan serve
+- npm run watch
 
 ```
 
