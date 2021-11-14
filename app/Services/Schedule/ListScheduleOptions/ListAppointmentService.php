@@ -21,6 +21,7 @@ class ListAppointmentService
         $this->dayAppointments = Schedule::query()->whereDate('start_at', $day)->get();
         $serviceTime = Schedule::SERVICE_DURATIONS[$service];
 
+
         $currentTime = Carbon::createFromFormat('H:i', self::START_HOUR);
         $endTime = Carbon::createFromFormat('H:i', self::END_HOUR);
 

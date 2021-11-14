@@ -1,36 +1,31 @@
-const {value, next} = require("lodash/seq");
 const services = document.getElementsByName('service');
 let day = document.querySelector('#day');
 const axios = require('axios').default;
-let service = setService();
 let parent = document.querySelector('div .card-body form .container .row.text-center');
 let btnSubmit = document.querySelector('div #submit');
+const loading = document.querySelector('#loading')
+const appointmentsWrapper = document.getElementById('appointments-wrapper');
 
-day.addEventListener('input', (day) => {
-    this.day = day.target.value;
-    setService();
-});
+fetchAppointments()
 
-function setService() {
-    services.forEach(service => {
-        if (service.checked === true) {
-            this.service = service;
-        }
-    });
-    req(this.service.value, this.day.value);
-}
+day.addEventListener('input', fetchAppointments)
+
 services.forEach( service => {
-    service.addEventListener('click', defineService);
+    service.addEventListener('click', fetchAppointments);
 });
 
+function fetchAppointments(service, day){
+    const selecteService = document.querySelector('[name="service"]:checked').value;
+    const selectedDay =  document.querySelector('#day').value;
 
-function defineService(service){
-    this.service = service.target.attributes.value.nodeValue;
-    req(this.service, day.value);
-}
+    appointmentsWrapper.innerHTML = '';
+    loading.style.display = 'flex';
 
-function req(service, day){
-    axios.get('/schedule/appointments?service=' + service + '&day='+ day)
+    const params = {
+        service: selecteService,
+        day: selectedDay,
+    }
+    axios.get('/schedule/appointments', { params })
         .then(function (response) {
             // handle success
             loadHours(response.data);
@@ -39,37 +34,22 @@ function req(service, day){
             // handle error
             console.log(error);
         })
-        .then(function () {
-            // always executed
+        .finally(function () {
+            loading.style.display = 'none';
         });
 }
 
 function loadHours(hours){
-    //limpar tela
-    if(document.getElementById('divParent')) {
-        divParent.parentNode.removeChild(divParent);
-    }
-    divParent = document.createElement('div');
-    divParent.setAttribute('class', 'row');
-    divParent.setAttribute('id', 'divParent');
-
-
 
     for(let i = 0; i < hours.length; i++) {
-        //criando os elementos
-        let div = document.createElement('div');
-        let input = document.createElement('input');
-        let label = document.createElement('label');
-
         //definindo as propriedades dos elementos
-        div.setAttribute('class', 'col-6');
+        const scheduleCheckButton = document.querySelector('#appointment-button-model').cloneNode(true)
+        const input = scheduleCheckButton.querySelector('input')
+        const label = scheduleCheckButton.querySelector('label')
 
+        scheduleCheckButton.style.display = 'block'
         input.setAttribute('id' , i);
-        input.setAttribute('type' , 'radio');
-        input.setAttribute('name' , 'start_at_hour');
         input.setAttribute('value' , hours[i].hour);
-
-        label.setAttribute('class', 'label');
         label.setAttribute('for', i);
         label.innerText = hours[i].hour;
 
@@ -79,16 +59,12 @@ function loadHours(hours){
             label.setAttribute('class', 'success');
         }
 
-        //definindo estrutura html
-        div.appendChild(input);
-        div.appendChild(label);
-
         //adicionar os botões na div interna
-        divParent.appendChild(div);
-
+        appointmentsWrapper.appendChild(scheduleCheckButton);
     }
+
     //adicionando a div com os botões na tela
-    parent.insertBefore(divParent, btnSubmit);
+    parent.insertBefore(appointmentsWrapper, btnSubmit);
 }
 
 

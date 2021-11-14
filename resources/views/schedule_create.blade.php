@@ -60,19 +60,16 @@
                                             value="{{ date('Y-m-d') }}">
                                     </div>
 
-                                    <!-- Botões de horário-->
-{{--                                    @for ($i = 13; $i < 20; $i++)--}}
-{{--                                        <div class="col-6">--}}
-{{--                                            <input id='{{ $i }}' type="radio" name="start_at_hour"--}}
-{{--                                                value="{{ $i }}:00">--}}
-{{--                                            <label class="label" for="{{ $i }}">{{ $i }}:00</label>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-6">--}}
-{{--                                            <input id='{{ $i * 2 }}' type="radio" name="start_at_hour"--}}
-{{--                                                value="{{ $i }}:30">--}}
-{{--                                            <label class="label" for='{{ $i * 2 }}'>{{ $i }}:30</label>--}}
-{{--                                        </div>--}}
-{{--                                    @endfor--}}
+                                    <div id="appointment-button-model" class="col-6" style="display: none;">
+                                        <input type="radio" name="start_at_hour">
+                                        <label for="" class="label"></label>
+                                    </div>
+                                    <div id="appointments-wrapper" class="row"></div>
+
+                                    <div id="loading" class="justify-content-center w-100" style="display: none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                        </div>
+                                    </div>
 
                                     <!-- Botão para agendar horário -->
                                     <div class="col-12" id="submit">

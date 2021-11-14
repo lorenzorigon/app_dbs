@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,25 +22,25 @@ Route::get('/', function () {
 
 
 //Schedule routes
-Route::group(['prefix' => 'schedule'], function () {
-    Route::get('/', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule.index');
-    Route::get('/create', [App\Http\Controllers\ScheduleController::class, 'create'])->name('schedule.create');
-    Route::post('/', [App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');
-    Route::patch('toggleConfirm/{schedule}', [App\Http\Controllers\ScheduleController::class, 'toggleConfirm'])->name('schedule.toggleConfirm');
-    Route::delete('/{schedule}', [App\Http\Controllers\ScheduleController::class, 'destroy'])->name('schedule.destroy');
+Route::group(['prefix' => 'schedule', 'middleware' => 'auth'], function () {
+    Route::get('/', [ScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/create', [ScheduleController::class, 'create'])->name('schedule.create');
+    Route::post('/', [ScheduleController::class, 'store'])->name('schedule.store');
+    Route::patch('toggleConfirm/{schedule}', [ScheduleController::class, 'toggleConfirm'])->name('schedule.toggleConfirm');
+    Route::delete('/{schedule}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
 
-    Route::get('/appointments', [App\Http\Controllers\ScheduleController::class, 'getAppointments']);
+    Route::get('/appointments', [ScheduleController::class, 'getAppointments'])->name('schedule.appointments');
 });
 
 //rotas de autenticação
 Auth::routes();
 
 //home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 //admin
-Route::get('/admin', [App\Http\Controllers\ScheduleController::class, 'dailySchedules'])
+Route::get('/admin', [ScheduleController::class, 'dailySchedules'])
     ->name('admin')->middleware('auth', 'auth.admin');
 
 //
