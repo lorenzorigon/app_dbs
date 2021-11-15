@@ -32,10 +32,11 @@
                         <form action="{{ route('schedule.store') }}" method="POST">
                             @csrf
                             <div class="container">
-                                <div class="row text-center">
+
+                                <div class="row">
 
                                     <!-- Seleção de serviço -->
-                                    <div class="row align-items-center mb-2 ml-3">
+                                    <div class="col-12 mb-2 ml-3">
                                         <div class="form-check">
                                             <input id="corte" class="form-check-input" type="radio" name="service"
                                                 value="{{Schedule::SERVICE_CORTE}}" checked>
@@ -56,14 +57,15 @@
                                     <!-- Campo de data -->
 
                                     <div class="col-12 mb-2">
-                                        <input type="date" class="form-control" id="day" name="start_at_day"
+                                        <input type="date" class="form-control" id="day" name="start_at_day" min="{{ date('Y-m-d') }}"
                                             value="{{ date('Y-m-d') }}">
                                     </div>
 
-                                    <div id="appointment-button-model" class="col-6" style="display: none;">
+                                    <div id="appointment-button-model" class="col-6 mb-1 radio-checkbox" style="display: none;">
                                         <input type="radio" name="start_at_hour">
                                         <label for="" class="label"></label>
                                     </div>
+
                                     <div id="appointments-wrapper" class="row"></div>
 
                                     <div id="loading" class="justify-content-center w-100" style="display: none;">

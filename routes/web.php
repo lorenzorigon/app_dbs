@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\ScheduleController;
+use App\Http\Controllers\Admin\ScheduleController as AdminScheduleController;
+use App\Http\Controllers\ScheduleController as PublicScheduleController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -23,12 +24,11 @@ Route::get('/', function () {
 
 //Schedule routes
 Route::group(['prefix' => 'schedule', 'middleware' => 'auth'], function () {
-    Route::get('/', [ScheduleController::class, 'index'])->name('schedule.index');
-    Route::get('/create', [ScheduleController::class, 'create'])->name('schedule.create');
-    Route::post('/', [ScheduleController::class, 'store'])->name('schedule.store');
-    Route::delete('/{schedule}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
-
-    Route::get('/appointments', [ScheduleController::class, 'getAppointments'])->name('schedule.appointments');
+    Route::get('/', [PublicScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/create', [PublicScheduleController::class, 'create'])->name('schedule.create');
+    Route::post('/', [PublicScheduleController::class, 'store'])->name('schedule.store');
+    Route::delete('/{schedule}', [PublicScheduleController::class, 'destroy'])->name('schedule.destroy');
+    Route::get('/appointments', [PublicScheduleController::class, 'getAppointments'])->name('schedule.appointments');
 });
 
 //rotas de autenticação
@@ -40,9 +40,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], function () {
-    Route::get('/dailySchedules', [ScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
-    Route::get('/expanses', [ScheduleController::class, 'expanses'])->name('admin.expanses');
-    Route::patch('toggleConfirm/{schedule}', [ScheduleController::class, 'toggleConfirm'])->name('admin.toggleConfirm');
+    Route::get('/dailySchedules', [AdminScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
+    Route::get('/expanses', [AdminScheduleController::class, 'expanses'])->name('admin.expanses');
+    Route::patch('toggleConfirm/{schedule}', [AdminScheduleController::class, 'toggleConfirm'])->name('admin.toggleConfirm');
 });
 
 

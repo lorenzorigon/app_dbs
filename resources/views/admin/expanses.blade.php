@@ -9,14 +9,20 @@
         <div class="card-body">
             <div class="container">
                 <div class="row">
-                    <a href="" class="btn btn-success  offset-1 col-5">Entrada</a>
-                    <a href="" class="btn btn-danger col-5 ml-1">Saída</a>
+                    <div class="col-12 d-grid gap-2">
+                        <a href="" class="btn btn-success">Entrada</a>
+                        <a href="" class="btn btn-danger">Saída</a>
+                    </div>
 
                     <!-- formularios para adicionar entrada ou saída R$ -->
-                    <div id="income" class="mt-4" style="display: none">
+                    <div id="income" class="col-12 mt-4">
                         <form action="">
                             <div class="form-group">
                                 <label for="income">Entrada</label>
+                                <input class="form-control" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descrição</label>
                                 <input class="form-control" type="text">
                             </div>
                         </form>

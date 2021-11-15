@@ -6,3 +6,31 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import "radio-checkbox";
+
+
+main{
+    height:100vh;
+}
+
+/* footer */
+.footer{
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-align: center;
+
+    p{
+        color: white;
+        padding: 5px;
+        font-size: 12px;
+    }
+}
+
+.img-precos{
+    position: absolute;
+    top: 200px;
+    right: 40px;
+}
