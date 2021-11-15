@@ -18,11 +18,7 @@ class ScheduleController extends Controller
         return view('myschedules', ['schedules' => $schedules]);
     }
 
-    public function dailySchedules()
-    {
-        $schedules = Schedule::query()->whereDate('start_at', date('Y-m-d'))->with('user')->get();
-        return view('admin.schedules', ['schedules' => $schedules]);
-    }
+
 
     public function getAppointments(Request $request){
         $day = $request->get('day');
@@ -53,14 +49,6 @@ class ScheduleController extends Controller
 
 
         return redirect()->back()->with('message', 'Horário marcado com sucesso!')->with('type', 'alert-success');
-    }
-
-    public function toggleConfirm(Request $request, Schedule $schedule)
-    {
-        $schedule->confirmed = !$schedule->confirmed;
-        $schedule->save();
-
-        return redirect()->route('admin');
     }
 
     public function destroy(Schedule $schedule)

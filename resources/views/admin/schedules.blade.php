@@ -21,7 +21,7 @@
                             </p>
                         </div>
                         <div class="col-6 align-self-center">
-                            <form action="{{route('schedule.toggleConfirm', ['schedule' => $schedule])}}" method="POST">
+                            <form action="{{route('admin.toggleConfirm', ['schedule' => $schedule])}}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" class="btn {{ $schedule->confirmed ? 'btn-success' : 'btn-danger' }} btn-md">
