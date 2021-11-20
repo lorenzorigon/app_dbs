@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
+    public function index(){
+        return view ('admin.index');
+    }
+
     public function dailySchedules()
     {
         $schedules = Schedule::query()->whereDate('start_at', date('Y-m-d'))->with('user')->get();
@@ -20,11 +24,11 @@ class ScheduleController extends Controller
         return view ('admin.expanses');
     }
 
-    public function toggleConfirm(Request $request, Schedule $schedule)
+    public function toggleConfirm(Schedule $schedule)
     {
         $schedule->confirmed = !$schedule->confirmed;
         $schedule->save();
 
-        return redirect()->route('admin');
+        return redirect()->back();
     }
 }

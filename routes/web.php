@@ -41,8 +41,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], function () {
     Route::get('/dailySchedules', [AdminScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
+    Route::get('/', [AdminScheduleController::class, 'index'])->name('admin.index');
     Route::get('/expanses', [AdminScheduleController::class, 'expanses'])->name('admin.expanses');
-    Route::patch('toggleConfirm/{schedule}', [AdminScheduleController::class, 'toggleConfirm'])->name('admin.toggleConfirm');
+    Route::patch('toggleConfirm/{schedule}', [AdminScheduleController::class, 'toggleConfirm'])
+        ->name('toggleConfirm');
 });
 
 
