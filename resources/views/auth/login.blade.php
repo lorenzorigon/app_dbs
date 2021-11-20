@@ -67,9 +67,9 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="mt-4">
-            <img src="img/logo.svg" style="width: 160px">
+            <div class="row justify-content-center mt-4 ml-4">
+                <img src="img/logo.svg" style="width: 200px;">
+            </div>
         </div>
     </div>
 </div>

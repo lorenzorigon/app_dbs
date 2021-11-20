@@ -11336,7 +11336,7 @@ main {
 .footer {
   width: 100%;
   position: relative;
-  top: 0;
+  top: 20px;
   left: 0;
   text-align: center;
 }
@@ -11351,3 +11351,5 @@ main {
   top: 200px;
   right: 40px;
 }
+
+
