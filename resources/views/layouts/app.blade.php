@@ -54,7 +54,7 @@
                         @else
 
                             @if(auth()->user()->is_admin)
-                                <a href="{{route('admin.dailySchedules')}}">Admin</a>
+                                <a href="{{route('admin.index')}}">Admin</a>
                             @endif
 
                             <li class="nav-item dropdown">

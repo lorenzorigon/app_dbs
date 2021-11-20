@@ -17,14 +17,14 @@
                         <div class="container mt-4 mb-4">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="dailySchedules">
+                                    <a href="{{route('admin.dailySchedules')}}">
                                         <button class="btn btn-success" type="submit">
                                             Agenda Diária
                                         </button>
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="expanses">
+                                    <a href="{{route('admin.expanses')}}">
                                         <button class="btn btn-primary" type="submit">
                                             Entrada / Saída
                                         </button>
