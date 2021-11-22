@@ -52,6 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], functi
     Route::get('/expanses/create', [ExpanseController::class, 'create'])->name('admin.expanses.create');
     Route::post('/expanses', [ExpanseController::class, 'store'])->name('admin.expanses.store');
     Route::delete('/{expanse}', [ExpanseController::class, 'destroy'])->name('admin.expanses.destroy');
+    Route::get ('/expanses/report', [ExpanseController::class, 'report'])->name('admin.expanses.report');
 });
 
 

@@ -28,6 +28,9 @@ class ExpanseController extends Controller
         return redirect()->back()->with('message', 'Registro inserido com sucesso');
     }
 
+    public function report(){
+        return view ('admin.expanses.report');
+    }
 
     public function show($id)
     {

@@ -7,6 +7,16 @@
         @endif
         <div class="card">
             <div class="card-body">
+                <div class="col-12 mb-1">
+                    <label for="date">Data inicial: </label>
+                    <input type="date" class="form-control" id="date" name="start_date" min="{{ date('Y-m-d') }}"
+                           value="{{ date('Y-m-d') }}">
+                </div>
+                <div class="col-12 mb-4">
+                    <label for="date">Data final:</label>
+                    <input type="date" class="form-control" id="day" name="final_date" min="{{ date('Y-m-d') }}"
+                           value="{{ date('Y-m-d') }}">
+                </div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -40,7 +50,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <button class="btn btn-primary float-left text-white">Relatório</button>
+                <a href="{{route('admin.expanses.report')}}" class="btn btn-primary float-left text-white">Relatório</a>
             </div>
         </div>
     </div>
