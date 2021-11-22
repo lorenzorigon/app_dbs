@@ -40,6 +40,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                <button class="btn btn-primary float-left text-white">Relatório</button>
             </div>
         </div>
     </div>

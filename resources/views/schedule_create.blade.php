@@ -33,7 +33,7 @@
                             @csrf
                             <div class="container">
 
-                                <div class="row">
+                                <div class="row justify-content-around">
 
                                     <!-- Seleção de serviço -->
                                     <div class="col-12 mb-2 ml-3">
