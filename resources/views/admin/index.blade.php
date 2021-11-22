@@ -24,7 +24,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{route('admin.expanses')}}">
+                                    <a href="{{route('admin.expanses.create')}}">
                                         <button class="btn btn-primary" type="submit">
                                             Entrada / Saída
                                         </button>

@@ -10,13 +10,13 @@ class MoneyController extends Controller
 
     public function index()
     {
-        //
+
     }
 
 
     public function create()
     {
-        //
+        return view ('admin.expanses.create');
     }
 
 

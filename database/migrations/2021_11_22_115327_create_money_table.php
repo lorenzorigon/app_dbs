@@ -13,9 +13,12 @@ class CreateMoneyTable extends Migration
      */
     public function up()
     {
-        Schema::create('money', function (Blueprint $table) {
+        Schema::create('Expanses', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->boolean('type'); // 0 saída, 1 entrada
+            $table->float('amount');
+            $table->string('description');
         });
     }
 
@@ -26,6 +29,6 @@ class CreateMoneyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('money');
+        Schema::dropIfExists('Expanses');
     }
 }

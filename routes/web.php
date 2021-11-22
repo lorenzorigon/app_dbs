@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MoneyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ScheduleController as AdminScheduleController;
@@ -40,12 +41,16 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], function () {
+    //Schedule
     Route::get('/dailySchedules', [AdminScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
     Route::get('/', [AdminScheduleController::class, 'index'])->name('admin.index');
-    Route::get('/expanses', [AdminScheduleController::class, 'expanses'])->name('admin.expanses');
     Route::patch('toggleConfirm/{schedule}', [AdminScheduleController::class, 'toggleConfirm'])
         ->name('toggleConfirm');
+
+    //Expanses
+    Route::get('/expanses', [MoneyController::class, 'index'])->name('admin.expanses');
+    Route::get('/expanses/create', [MoneyController::class, 'create'])->name('admin.expanses.create');
 });
 
 
-//
+
