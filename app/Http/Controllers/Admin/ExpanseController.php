@@ -11,7 +11,8 @@ class ExpanseController extends Controller
 
     public function index()
     {
-
+        $expanses = Expanse::all();
+        return view('admin.expanses.index', ['expanses' => $expanses]);
     }
 
 
@@ -33,18 +34,11 @@ class ExpanseController extends Controller
         //
     }
 
-    public function edit($id)
-    {
-        //
-    }
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     public function destroy($id)
     {
-        //
+        Expanse::destroy($id);
+        return redirect()->back()->with('message', 'Movimentação deletada com sucesso!');
     }
 }

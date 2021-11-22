@@ -25,8 +25,17 @@
                                 </div>
                                 <div class="col-6">
                                     <a href="{{route('admin.expanses.create')}}">
-                                        <button class="btn btn-primary" type="submit">
+                                        <button class="btn btn-success" type="submit">
                                             Entrada / Saída
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="offset-3 col-6">
+                                    <a href="{{route('admin.expanses')}}">
+                                        <button class="btn btn-primary" type="submit">
+                                            Relatório Financeiro
                                         </button>
                                     </a>
                                 </div>
