@@ -18,14 +18,14 @@
                         <div class="row">
                             <div class="col-6">
                                 <a href="schedule/create">
-                                    <button class="btn btn-success" type="submit">
+                                    <button class="btn btn-success text-white" type="submit">
                                         Agendar Horário
                                     </button>
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="schedule">
-                                    <button class="btn btn-primary" type="submit">
+                                    <button class="btn btn-primary text-white" type="submit">
                                         Meus agendamentos
                                     </button>
                                 </a>
