@@ -7,16 +7,21 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <div class="col-12 mb-1">
-                    <label for="date">Data inicial: </label>
-                    <input type="date" class="form-control" id="date" name="start_date" min="{{ date('Y-m-d') }}"
-                           value="{{ date('Y-m-d') }}">
-                </div>
-                <div class="col-12 mb-4">
-                    <label for="date">Data final:</label>
-                    <input type="date" class="form-control" id="day" name="final_date" min="{{ date('Y-m-d') }}"
-                           value="{{ date('Y-m-d') }}">
-                </div>
+                <form id="dates" action="{{route('admin.expanses.report')}}">
+                    <div class="col-12 mb-1">
+                        <label for="date">Data inicial: </label>
+                        <input type="date" class="form-control" id="date" name="start_date" min="{{ date('Y-m-d') }}"
+                               value="{{ date('Y-m-d') }}">
+                    </div>
+                    <div class="col-12 mb-4">
+                        <label for="date">Data final:</label>
+                        <input type="date" class="form-control" id="day" name="final_date" min="{{ date('Y-m-d') }}"
+                               value="{{ date('Y-m-d') }}">
+                    </div>
+                    <div class="div mb-1 float-end mr-1">
+                    <button type="submit" for="dates" class="btn btn-primary text-white">Relatório</button>
+                    </div>
+                </form>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -50,7 +55,6 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a href="{{route('admin.expanses.report')}}" class="btn btn-primary float-left text-white">Relatório</a>
             </div>
         </div>
     </div>

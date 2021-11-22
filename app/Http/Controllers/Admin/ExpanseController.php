@@ -28,7 +28,9 @@ class ExpanseController extends Controller
         return redirect()->back()->with('message', 'Registro inserido com sucesso');
     }
 
-    public function report(){
+    public function report(Request $request){
+        //start_date , final_date manipular e gerar o pdf e atualizar tabela
+        // -------
         return view ('admin.expanses.report');
     }
 
