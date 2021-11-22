@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Expanse;
 use Illuminate\Http\Request;
 
-class MoneyController extends Controller
+class ExpanseController extends Controller
 {
 
     public function index()
@@ -22,7 +23,8 @@ class MoneyController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Expanse::create($request->only('type', 'amount', 'description'));
+        return redirect()->back()->with('message', 'Registro inserido com sucesso');
     }
 
 

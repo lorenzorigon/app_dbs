@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\MoneyController;
+use App\Http\Controllers\Admin\ExpanseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ScheduleController as AdminScheduleController;
@@ -48,8 +48,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], functi
         ->name('toggleConfirm');
 
     //Expanses
-    Route::get('/expanses', [MoneyController::class, 'index'])->name('admin.expanses');
-    Route::get('/expanses/create', [MoneyController::class, 'create'])->name('admin.expanses.create');
+    Route::get('/expanses', [ExpanseController::class, 'index'])->name('admin.expanses');
+    Route::get('/expanses/create', [ExpanseController::class, 'create'])->name('admin.expanses.create');
+    Route::post('/expanses', [ExpanseController::class, 'store'])->name('admin.expanses.store');
 });
 
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMoneyTable extends Migration
+class CreateExpanseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMoneyTable extends Migration
      */
     public function up()
     {
-        Schema::create('Expanses', function (Blueprint $table) {
+        Schema::create('expanses', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->boolean('type'); // 0 saída, 1 entrada
@@ -29,6 +29,6 @@ class CreateMoneyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Expanses');
+        Schema::dropIfExists('expanses');
     }
 }
