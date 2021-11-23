@@ -1,3 +1,15 @@
+@php
+    if(!isset($start_date))
+    {
+        $start_date = \Carbon\Carbon::now()->format('Y-m-d');
+    }
+    if(!isset($final_date))
+    {
+        $final_date = \Carbon\Carbon::now()->format('Y-m-d');
+    }
+
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -19,7 +31,7 @@
                                value="{{ date('Y-m-d') }}">
                     </div>
                     <div class="div mb-1 text-center mr-1">
-                    <button type="submit" for="dates" class="btn btn-primary text-white">Filtrar</button>
+                        <button type="submit" for="dates" class="btn btn-primary text-white">Filtrar</button>
                     </div>
                 </form>
                 <table class="table table-striped">
@@ -55,6 +67,8 @@
                     @endforeach
                     </tbody>
                 </table>
+                <a href="{{route('admin.expanses.reportPDF', ['start_date' => $start_date, 'final_date' => $final_date])}}"
+                   class="btn btn-success">PDF</a>
             </div>
         </div>
     </div>
