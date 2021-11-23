@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Expanse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ExpanseController extends Controller
 {
@@ -43,19 +44,37 @@ class ExpanseController extends Controller
 
     public function reportPDF(Request $request)
     {
+        //definindo dia e mes da data inicial e data final
+        $start_date = Carbon::create($request->start_date)->format('d-m');
+        $final_date = Carbon::create($request->final_date)->format('d-m');
 
+        //pesquisando os gatos dentro do range de filtro
         $expanses = Expanse::whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->final_date . ' 23:59:59'])->get();
-    }
 
-    public function show($id)
-    {
-        //
-    }
+        //calcular saldo
+        $balance = $this->calcBalance($expanses);
 
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.Expanses.report', ['expanses' => $expanses, 'balance' => $balance, 'start_date' => $start_date, 'final_date' => $final_date]);
+        return $pdf->download('VendaX.pdf');
+    }
 
     public function destroy($id)
     {
         Expanse::destroy($id);
         return redirect()->back()->with('message', 'Movimentação deletada com sucesso!');
+    }
+
+    private function calcBalance($expanses)
+    {
+        $balance = 0;
+        foreach ($expanses as $expanse) {
+            if($expanse->type == 0){
+                $expanse->amount = !$expanse->amount;
+            }
+            $balance += $expanse->amount;
+        }
+
+        return $balance;
     }
 }
