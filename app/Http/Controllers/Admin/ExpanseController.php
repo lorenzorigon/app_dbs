@@ -43,7 +43,7 @@ class ExpanseController extends Controller
 
     public function reportPDF(Request $request)
     {
-        dd($request->all());
+
         $expanses = Expanse::whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->final_date . ' 23:59:59'])->get();
     }
 
