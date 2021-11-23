@@ -7,19 +7,19 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <form id="dates" action="{{route('admin.expanses.report')}}">
+                <form id="dates" action="{{route('admin.expanses.filter')}}">
                     <div class="col-12 mb-1">
                         <label for="date">Data inicial: </label>
-                        <input type="date" class="form-control" id="date" name="start_date" min="{{ date('Y-m-d') }}"
+                        <input type="date" class="form-control" id="date" name="start_date"
                                value="{{ date('Y-m-d') }}">
                     </div>
-                    <div class="col-12 mb-4">
+                    <div class="col-12 mb-2">
                         <label for="date">Data final:</label>
-                        <input type="date" class="form-control" id="day" name="final_date" min="{{ date('Y-m-d') }}"
+                        <input type="date" class="form-control" id="day" name="final_date"
                                value="{{ date('Y-m-d') }}">
                     </div>
-                    <div class="div mb-1 float-end mr-1">
-                    <button type="submit" for="dates" class="btn btn-primary text-white">Relatório</button>
+                    <div class="div mb-1 text-center mr-1">
+                    <button type="submit" for="dates" class="btn btn-primary text-white">Filtrar</button>
                     </div>
                 </form>
                 <table class="table table-striped">

@@ -28,10 +28,10 @@ class ExpanseController extends Controller
         return redirect()->back()->with('message', 'Registro inserido com sucesso');
     }
 
-    public function report(Request $request){
-        //start_date , final_date manipular e gerar o pdf e atualizar tabela
-        // -------
-        return view ('admin.expanses.report');
+    public function filterExpanses(Request $request){
+        $expanses = Expanse::whereBetween('created_at', [$request->start_date.' 00:00:00', $request->final_date.' 23:59:59'])->get();
+
+        return view('admin.expanses.index', ['expanses' => $expanses]);
     }
 
     public function show($id)
