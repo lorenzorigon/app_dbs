@@ -68,7 +68,10 @@
                     </tbody>
                 </table>
                 <a href="{{route('admin.expanses.reportPDF', ['start_date' => $start_date, 'final_date' => $final_date])}}"
-                   class="btn btn-success">PDF</a>
+                   class="col btn btn-success float-start">PDF</a>
+                @if(isset($balance))
+                    <h2 class="col float-end">Saldo: {{$balance}}</h2>
+                @endif
             </div>
         </div>
     </div>

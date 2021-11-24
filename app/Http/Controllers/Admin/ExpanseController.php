@@ -36,17 +36,18 @@ class ExpanseController extends Controller
         $start_date = $request->start_date;
         $final_date = $request->final_date;
 
-
         $expanses = Expanse::whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->final_date . ' 23:59:59'])->get();
 
-        return view('admin.expanses.index', ['expanses' => $expanses, 'start_date' => $start_date, 'final_date' => $final_date]);
+        $balance = $this->calcBalance($expanses);
+
+        return view('admin.expanses.index', ['expanses' => $expanses, 'start_date' => $start_date, 'final_date' => $final_date, 'balance' => $balance]);
     }
 
     public function reportPDF(Request $request)
     {
         //definindo dia e mes da data inicial e data final
-        $start_date = Carbon::create($request->start_date)->format('d-m');
-        $final_date = Carbon::create($request->final_date)->format('d-m');
+        $start_date = Carbon::create($request->start_date)->format('d/m');
+        $final_date = Carbon::create($request->final_date)->format('d/m');
 
         //pesquisando os gatos dentro do range de filtro
         $expanses = Expanse::whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->final_date . ' 23:59:59'])->get();
@@ -70,9 +71,11 @@ class ExpanseController extends Controller
         $balance = 0;
         foreach ($expanses as $expanse) {
             if($expanse->type == 0){
-                $expanse->amount = !$expanse->amount;
+                $balance -= $expanse->amount;
+            }else{
+                $balance += $expanse->amount;
             }
-            $balance += $expanse->amount;
+
         }
 
         return $balance;

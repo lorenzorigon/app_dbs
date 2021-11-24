@@ -8,7 +8,7 @@
     <title>Movimentações</title>
 
     <style>
-        h1 {
+        #tt {
             font-size: 20px;
             background-color: #ccc;
         }
@@ -24,9 +24,17 @@
 
 </head>
 <body>
+<div style="text-align: center">
+    <h1>Douglas <span style="background: url({{ public_path("/img/logo_black.svg")}}); width: 100px;color: black;background-repeat: repeat">Barber</span> Shop </h1>
+</div>
+
 
 <div style="text-align: center">
-    <h1>Movimentações Financeiras de {{$start_date}} a {{$final_date}}</h1>
+    @if($start_date != $final_date)
+        <h1 id="tt">Movimentações Financeiras de {{$start_date}} a {{$final_date}}</h1>
+    @else
+        <h1 id="tt">Movimentações Financeiras de {{$start_date}}</h1>
+    @endif
 </div>
 
 <table class="table table-striped">
@@ -44,7 +52,7 @@
             $expanseDate = \Carbon\Carbon::create($expanse->created_at);
         @endphp
         <tr>
-            <td>{{$expanse->amount}}</td>
+            <td style="color: {{$expanse->type ? 'green' : 'red'}}">{{$expanse->amount}}</td>
             <td>{{$expanse->type ? 'Entrada' : 'Saída'}}</td>
             <td>{{$expanse->description}}</td>
             <td>{{$expanseDate->format('d/m')}}</td>
@@ -53,7 +61,7 @@
     </tbody>
 </table>
 <div style="text-align: right;margin-right: 20px">
-    <h2>Saldo: {{$balance}}</h2>
+    <h2 style="color: {{$balance >= 0 ? 'green' : 'red'}}">Saldo: {{$balance}}</h2>
 </div>
 </body>
 </html>
