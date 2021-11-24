@@ -10,14 +10,17 @@ use Illuminate\Support\Facades\App;
 
 class ExpanseController extends Controller
 {
-
-    public function index()
+    public function index(Request $request)
     {
+        $start_date = $request->start_date;
+        $final_date = $request->final_date;
 
-        $expanses = Expanse::all();
-        return view('admin.expanses.index', ['expanses' => $expanses]);
+        $expanses = Expanse::whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->final_date . ' 23:59:59'])->get();
+
+        $balance = $this->calcBalance($expanses);
+
+        return view('admin.expanses.index', ['expanses' => $expanses, 'start_date' => $start_date, 'final_date' => $final_date, 'balance' => $balance]);
     }
-
 
     public function create()
     {
@@ -29,18 +32,6 @@ class ExpanseController extends Controller
     {
         Expanse::create($request->only('type', 'amount', 'description'));
         return redirect()->back()->with('message', 'Registro inserido com sucesso');
-    }
-
-    public function filterExpanses(Request $request)
-    {
-        $start_date = $request->start_date;
-        $final_date = $request->final_date;
-
-        $expanses = Expanse::whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->final_date . ' 23:59:59'])->get();
-
-        $balance = $this->calcBalance($expanses);
-
-        return view('admin.expanses.index', ['expanses' => $expanses, 'start_date' => $start_date, 'final_date' => $final_date, 'balance' => $balance]);
     }
 
     public function reportPDF(Request $request)

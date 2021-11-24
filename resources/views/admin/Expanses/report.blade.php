@@ -25,7 +25,7 @@
 </head>
 <body>
 <div style="text-align: center">
-    <h1>Douglas <span style="background: url({{ public_path("/img/logo_black.svg")}}); width: 100px;color: black;background-repeat: repeat">Barber</span> Shop </h1>
+    <h1>Douglas Barber Shop </h1>
 </div>
 
 
