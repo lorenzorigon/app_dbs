@@ -45,7 +45,7 @@ class StoreScheduleService
             })
             ->exists();
 
-        if ($existsSchedule) {
+        if ($existsSchedule || ($existsSchedule < Carbon::now()->format('Y-d-m'))) {
             throw new UnprocessableEntityHttpException('Não foi possível agendar nesse horário, pois já existe outro agendamento!');
         }
     }

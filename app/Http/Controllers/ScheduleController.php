@@ -29,9 +29,6 @@ class ScheduleController extends Controller
 
     public function create()
     {
-        /*$options = new ListAppointmentService();
-        $options->listOptions();*/
-
         return view('schedule_create');
     }
 
