@@ -12,10 +12,17 @@ class ExpanseController extends Controller
 {
     public function index(Request $request)
     {
-        $start_date = $request->start_date;
-        $final_date = $request->final_date;
+        if(isset($request->start_date)){
+            $start_date = $request->start_date;
+            $final_date = $request->final_date;
+        }else{
+            $start_date = Carbon::now()->format('Y-m-d');
+            $final_date = $start_date;
+        }
 
-        $expanses = Expanse::whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->final_date . ' 23:59:59'])->get();
+
+        $expanses = Expanse::whereBetween('created_at', [$start_date . ' 00:00:00', $final_date . ' 23:59:59'])->get();
+
 
         $balance = $this->calcBalance($expanses);
 
