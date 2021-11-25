@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ExpanseController;
+use App\Http\Controllers\FinishScheduleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ScheduleController as AdminScheduleController;
@@ -45,6 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], functi
     Route::get('/dailySchedules', [AdminScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
     Route::get('/', [AdminScheduleController::class, 'index'])->name('admin.index');
     Route::get('/schedule/finish', [AdminScheduleController::class, 'finish'])->name('admin.schedules.finish');
+    Route::post('/schedule/finish', [FinishScheduleController::class, 'index'])->name('admin.schedules.finishSchedule');
     Route::patch('toggleConfirm/{schedule}', [AdminScheduleController::class, 'toggleConfirm'])
         ->name('toggleConfirm');
 

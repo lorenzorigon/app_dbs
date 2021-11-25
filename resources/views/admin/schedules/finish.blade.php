@@ -33,10 +33,12 @@
                             </p>
                         </div>
                         <div class="col-6">
-                            <form action="">
+                            <form action="{{route('admin.schedules.finishSchedule')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="user" value="{{$schedule->user}}">
                                 <div class="row flex-column">
                                     <label class="col" for="value">Valor</label>
-                                    <input class="col-6" type="number" name="value">
+                                    <input class="col-6" type="number" name="value" value="0">
                                     <button class="col-6  btn btn-success mt-1">Finalizar</button>
                                 </div>
                             </form>
