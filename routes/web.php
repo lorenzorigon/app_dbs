@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], functi
     //Schedule
     Route::get('/dailySchedules', [AdminScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
     Route::get('/', [AdminScheduleController::class, 'index'])->name('admin.index');
+    Route::get('/schedule/finish', [AdminScheduleController::class, 'finish'])->name('admin.schedules.finish');
     Route::patch('toggleConfirm/{schedule}', [AdminScheduleController::class, 'toggleConfirm'])
         ->name('toggleConfirm');
 

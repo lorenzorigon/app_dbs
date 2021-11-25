@@ -6,7 +6,7 @@
             <form action="{{route('admin.dailySchedules')}}" method="get">
                 @csrf
                 <input type="date" class="form-control" id="day" name="date" min="{{ date('Y-m-d') }}"
-                       value="{{ date('Y-m-d') }}">
+                       value="{{$date ? $date : date('Y-m-d') }}">
                 <button class="mt-2 mb-2 btn btn-primary float-end">Buscar</button>
             </form>
         </div>
