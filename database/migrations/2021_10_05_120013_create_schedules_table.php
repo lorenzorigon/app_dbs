@@ -19,6 +19,7 @@ class CreateSchedulesTable extends Migration
             $table->dateTime('start_at');
             $table->dateTime('end_at');
             $table->boolean('confirmed')->default('0');
+            $table->boolean('done')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->string('service');
 

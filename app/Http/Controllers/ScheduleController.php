@@ -14,13 +14,13 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-        $schedules = Schedule::where('user_id', auth()->user()->id)->get();
+        $schedules = Schedule::where('user_id', auth()->user()->id)->where('end_at', '>=' ,Carbon::now())->get();
         return view('myschedules', ['schedules' => $schedules]);
     }
 
 
-
-    public function getAppointments(Request $request){
+    public function getAppointments(Request $request)
+    {
         $day = $request->get('day');
         $service = $request->get('service');
         $listAppointmentService = new ListAppointmentService();
@@ -32,15 +32,20 @@ class ScheduleController extends Controller
         return view('schedule_create');
     }
 
+    public function doneSchedule($id)
+    {
+
+    }
+
     public function store(Request $request)
     {
         $request->validate(Schedule::rules(), Schedule::feedback());
         $scheduleData = $request->only('start_at_day', 'start_at_hour', 'service');
 
         $schedulingService = new StoreScheduleService();
-        try{
+        try {
             $schedulingService->store(auth()->user(), $scheduleData['start_at_day'], $scheduleData['start_at_hour'], $scheduleData['service']);
-        }catch (UnprocessableEntityHttpException){
+        } catch (UnprocessableEntityHttpException) {
             return redirect()->back()->with('message', 'Horário já está agendado!')->with('type', 'alert-danger');
         }
 
