@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container">
+        <div class="row">
+            <form action="{{route('admin.dailySchedules')}}" method="get">
+                @csrf
+                <input type="date" class="form-control" id="day" name="date" min="{{ date('Y-m-d') }}"
+                       value="{{ date('Y-m-d') }}">
+                <button class="mt-2 mb-2 btn btn-primary float-end">Buscar</button>
+            </form>
+        </div>
+    </div>
+
     <div class="card">
-        <div class="card-header row">
-            <p class="col-5">Agenda do Dia</p>
-            <input type="date" class="col form-control" id="day" name="start_at_day" min="{{ date('Y-m-d') }}"
-                                 value="{{ date('Y-m-d') }}">
+        <div class="card-header">
+            Agenda do Dia
         </div>
 
         <div class="card-body">
