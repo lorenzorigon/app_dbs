@@ -13,9 +13,9 @@ class ScheduleController extends Controller
         return view ('admin.index');
     }
 
-    public function dailySchedules()
+    public function dailySchedules(Request $request)
     {
-        $schedules = Schedule::query()->whereDate('start_at', date('Y-m-d'))->with('user')->get();
+        $schedules = Schedule::query()->whereDate('start_at', $request->date)->with('user')->get();
         return view('admin.schedules.index', ['schedules' => $schedules]);
     }
 

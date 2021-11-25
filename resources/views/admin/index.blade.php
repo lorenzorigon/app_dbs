@@ -17,11 +17,13 @@
                         <div class="container mt-4 mb-4">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="{{route('admin.dailySchedules')}}">
+                                    <form action="{{route('admin.dailySchedules')}}" method="get">
+                                        @csrf
+                                        <input type="hidden" name="date" value="{{date('Y-m-d')}}">
                                         <button class="btn btn-success text-white" type="submit">
                                             Agenda Diária
                                         </button>
-                                    </a>
+                                    </form>
                                 </div>
                                 <div class="col-6">
                                     <a href="{{route('admin.expanses.create')}}">

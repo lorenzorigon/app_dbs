@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            Agenda do Dia
+        <div class="card-header row">
+            <p class="col-5">Agenda do Dia</p>
+            <input type="date" class="col form-control" id="day" name="start_at_day" min="{{ date('Y-m-d') }}"
+                                 value="{{ date('Y-m-d') }}">
         </div>
 
         <div class="card-body">
@@ -13,6 +15,7 @@
                         @php
                             $scheduleDate = \Carbon\Carbon::create($schedule->start_at);
                         @endphp
+
                         <div class="col-6 align-self-center">
                             <p>
                                 Horário: {{ $scheduleDate->format('H:i') }} hrs
