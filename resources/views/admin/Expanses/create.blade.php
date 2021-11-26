@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Agenda do Dia
+            Movimentações Financeiras
         </div>
 
         <div class="card-body">

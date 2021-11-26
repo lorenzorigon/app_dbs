@@ -17,9 +17,8 @@
                         <div class="container mt-4 mb-4">
                             <div class="row">
                                 <div class="col-6">
-                                    <form action="{{route('admin.dailySchedules')}}" method="get">
+                                    <form action="{{route('admin.dailySchedules', ['day' => date('Y-m-d') ])}}" method="post">
                                         @csrf
-                                        <input type="hidden" name="date" value="{{date('Y-m-d')}}">
                                         <button class="btn btn-success text-white" type="submit">
                                             Agenda Diária
                                         </button>
