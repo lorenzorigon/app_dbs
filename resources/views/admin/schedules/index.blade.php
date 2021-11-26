@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <form action="{{route('admin.dailySchedules')}}" method="get">
+            <form action="{{route('admin.dailySchedules')}}" method="post">
                 @csrf
                 <input type="date" class="form-control" id="day" name="date" min="{{ date('Y-m-d') }}"
                        value="{{$date ? $date : date('Y-m-d') }}">

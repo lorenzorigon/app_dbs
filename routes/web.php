@@ -43,9 +43,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'auth.admin'], function () {
     //Schedule
-    Route::post('/dailySchedules/{day}', [AdminScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
+    Route::post('/dailySchedules/', [AdminScheduleController::class, 'dailySchedules'])->name('admin.dailySchedules');
     Route::get('/', [AdminScheduleController::class, 'index'])->name('admin.index');
-    Route::get('/schedule/finish', [AdminScheduleController::class, 'finish'])->name('admin.schedules.finish');
+    Route::post('/schedule/finish', [AdminScheduleController::class, 'finish'])->name('admin.schedules.finish');
     Route::post('/schedule/{id}/finish', [FinishScheduleController::class, 'index'])->name('admin.schedules.finishSchedule');
     Route::patch('toggleConfirm/{schedule}', [AdminScheduleController::class, 'toggleConfirm'])
         ->name('toggleConfirm');
