@@ -1,5 +1,7 @@
 <?php
-   use App\Models\Schedule;
+
+use App\Models\Schedule;
+
 ?>
 @extends('layouts.app')
 @section('content')
@@ -16,17 +18,17 @@
                             </div>
                         @endif
 
-                        <!-- Mensagem de Sucesso-->
+                    <!-- Mensagem de Sucesso-->
                         @if (session('message'))
                             <p class="alert {{session('type')}}">{{session('message')}}</p>
                         @endif
 
-                        <!-- Mensagem de Validação de campos-->
+                    <!-- Mensagem de Validação de campos-->
                         @if ($errors->any())
                             <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                        {{ $error }} <br>
-                                    @endforeach
+                                @foreach ($errors->all() as $error)
+                                    {{ $error }} <br>
+                                @endforeach
                             </div>
                         @endif
                         <form action="{{ route('schedule.store') }}" method="POST">
@@ -39,29 +41,42 @@
                                     <div class="col-12 mb-2 ml-3">
                                         <div class="form-check">
                                             <input id="corte" class="form-check-input" type="radio" name="service"
-                                                value="{{Schedule::SERVICE_CORTE}}" checked>
+                                                   value="{{Schedule::SERVICE_CORTE}}" checked>
                                             <label for="corte" class="form-check-label mr-2"> Corte </label>
                                         </div>
                                         <div class="form-check">
                                             <input id="barba" class="form-check-input" type="radio" name="service"
-                                                value="{{Schedule::SERVICE_BARBA}}">
+                                                   value="{{Schedule::SERVICE_BARBA}}">
                                             <label for="barba" class="form-check-label mr-2"> Barba </label>
                                         </div>
                                         <div class="form-check">
                                             <input id="completo" class="form-check-input" type="radio" name="service"
-                                                value="{{Schedule::SERVICE_COMPLETO}}">
+                                                   value="{{Schedule::SERVICE_COMPLETO}}">
                                             <label for="completo" class="form-check-label"> Corte & Barba </label>
                                         </div>
                                     </div>
 
-                                    <!-- Campo de data -->
+                                    <!-- Seleção de Usuário (ADMIN)-->
+                                    @if(auth()->user()->is_admin)
+                                    <div class="col-12 mb-3">
+                                        <select class="form-select" name="user">
+                                            <option selected>Selecione um Cliente</option>
+                                            @foreach($users as $user)
+                                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @endif
 
-                                    <div class="col-12 mb-2">
-                                        <input type="date" class="form-control" id="day" name="start_at_day" min="{{ date('Y-m-d') }}"
-                                            value="{{ date('Y-m-d') }}">
+                                    <!-- Campo de data -->
+                                    <div class="col-12 mb-3">
+                                        <input type="date" class="form-control" id="day" name="start_at_day"
+                                               min="{{ date('Y-m-d') }}"
+                                               value="{{ date('Y-m-d') }}">
                                     </div>
 
-                                    <div id="appointment-button-model" class="col-6 mb-1 radio-checkbox" style="display: none;">
+                                    <div id="appointment-button-model" class="col-6 mb-1 radio-checkbox"
+                                         style="display: none;">
                                         <input type="radio" name="start_at_hour">
                                         <label for="" class="label"></label>
                                     </div>
@@ -76,7 +91,8 @@
                                     <!-- Botão para agendar horário -->
                                     <div class="col-12" id="submit">
                                         <button class="btn btn-success mt-1" type="submit"
-                                            style="width:100%;font-size:20px">Agendar</button>
+                                                style="width:100%;font-size:20px">Agendar
+                                        </button>
                                     </div>
                                 </div>
                             </div>

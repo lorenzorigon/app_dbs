@@ -29,7 +29,8 @@ class ScheduleController extends Controller
 
     public function create()
     {
-        return view('schedule_create');
+        $users = User::all();
+        return view('schedule_create', ['users' => $users]);
     }
 
 

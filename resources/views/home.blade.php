@@ -36,26 +36,13 @@
                         <div class="mt-1 mb-1">
                             <h5 class="text-center">Cartão Fidelidade</h5>
                             <div class="justify-content-center row gap-1">
-                                <div class="col-2" style="border: 1px solid black;height: 40px;)">
-                                    <img  class="mt-1" src="img/logo.svg" alt="" style="width:30px">
-                                </div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px;)">
-                                    <img  class="mt-1" src="img/logo.svg" alt="" style="width:30px">
-                                </div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px;)">
-                                    <img  class="mt-1" src="img/logo.svg" alt="" style="width:30px">
-                                </div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px;)">
-                                    <img  class="mt-1" src="img/logo.svg" alt="" style="width:30px">
-                                </div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px;)">
-                                    <img  class="mt-1" src="img/logo.svg" alt="" style="width:30px">
-                                </div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px"></div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px"></div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px"></div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px"></div>
-                                <div class="col-2" style="border: 1px solid black;height: 40px"></div>
+                                @for($i = 1; $i <= 10; $i++)
+                                    <div class="col-2" style="border: 1px solid black;height: 40px;)">
+                                        @if(auth()->user()->loyalty >= $i)
+                                            <img class="mt-1" src="img/logo.svg" alt="" style="width:30px">
+                                        @endif
+                                    </div>
+                                @endfor
                             </div>
                         </div>
                         <hr>
@@ -77,7 +64,7 @@
                                     <p><b>Desenho c/ Pigmentação:</b> 5,00</p>
                                 </div>
                                 <div class="col-12">
-                                    <p><b>Combo 2 Social + 4 Barbas:</b> 80,00</p>
+                                    <p><b>Combo 2 Social + 4 Barbas:</b> 90,00</p>
                                 </div>
                                 <div class="col-12">
                                     <p><b>Combo 2 Degradê + 4 Barbas:</b> 110,00</p>
