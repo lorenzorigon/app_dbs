@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <form action="{{route('admin.schedules.finish')}}" method="post">
+            <form action="{{route('admin.schedules.finish')}}" method="get">
                 @csrf
                 <input type="date" class="form-control" id="day" name="date" min="{{ date('Y-m-d') }}"
-                       value="{{$date ? $date : date('Y-m-d') }}">
+                       value="{{$date ? $date : Carbon::now() }}">
                 <button class="mt-2 mb-2 btn btn-primary float-end">Buscar</button>
             </form>
         </div>

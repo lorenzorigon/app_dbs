@@ -17,7 +17,7 @@
                         <div class="container mt-4 mb-4">
                             <div class="row">
                                 <div class="col-6">
-                                    <form action="{{route('admin.dailySchedules')}}" method="post">
+                                    <form action="{{route('admin.dailySchedules')}}" method="get">
                                         <input type="hidden" name="date" value="{{date('Y-m-d')}}">
                                         @csrf
                                         <button class="btn btn-success text-white" type="submit">
@@ -35,7 +35,7 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col-6">
-                                    <form action="{{route('admin.schedules.finish')}}" method="post">
+                                    <form action="{{route('admin.schedules.finish')}}" method="get">
                                         @csrf
                                         <input type="hidden" name="date" value="{{date('Y-m-d')}}">
                                         <button class="btn btn-primary text-white" type="submit">

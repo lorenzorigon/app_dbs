@@ -20,7 +20,7 @@ class FinishScheduleController extends Controller
         $schedule->done = 1;
         $schedule->save();
 
-        return redirect()->back()->with('message', 'Serviço Finalizado!');
+        return redirect()->back();
     }
 
     private function addLoyalty(User $user)
