@@ -39,9 +39,16 @@ class ScheduleController extends Controller
         $request->validate(Schedule::rules(), Schedule::feedback());
         $scheduleData = $request->only('start_at_day', 'start_at_hour', 'service');
 
+        if($request->user){
+            $user = User::query()->find($request->user);
+        }else{
+            $user = auth()->user();
+        }
+
+
         $schedulingService = new StoreScheduleService();
         try {
-            $schedulingService->store(auth()->user(), $scheduleData['start_at_day'], $scheduleData['start_at_hour'], $scheduleData['service']);
+            $schedulingService->store($user, $scheduleData['start_at_day'], $scheduleData['start_at_hour'], $scheduleData['service']);
         } catch (UnprocessableEntityHttpException) {
             return redirect()->back()->with('message', 'Horário já está agendado!')->with('type', 'alert-danger');
         }
