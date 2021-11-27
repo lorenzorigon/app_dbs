@@ -32,10 +32,6 @@ class ScheduleController extends Controller
         return view('schedule_create');
     }
 
-    public function doneSchedule($id)
-    {
-
-    }
 
     public function store(Request $request)
     {
