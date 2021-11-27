@@ -25,7 +25,12 @@ class FinishScheduleController extends Controller
 
     private function addLoyalty(User $user)
     {
-        $user->loyalty += 1;
+        if ($user->loyalty == 10){
+            $user->loyalty = 0;
+        }else{
+            $user->loyalty += 1;
+        }
+
         $user->save();
     }
 
